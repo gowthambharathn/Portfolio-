@@ -1,155 +1,380 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gowtham Bharath | Portfolio</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gowtham Bharath — AI Engineer & Cybersecurity</title>
+  <meta name="description" content="Gowtham Bharath — AI Engineer, Cybersecurity Enthusiast. Portfolio showcasing projects, skills, experience and contact."/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Segoe UI', sans-serif; background: #f4f7fb; color: #2b2b2b; }
-    header {
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      color: white;
-      text-align: center;
-      padding: 3rem 1rem 5rem;
-      position: relative;
+    :root{
+      --bg: #f6f9fc;
+      --card: #ffffff;
+      --muted:#616b78;
+      --accent: #2c5364;
+      --accent-2: #3aa6b5;
+      --glass: rgba(255,255,255,0.6);
+      --radius: 14px;
+      --shadow: 0 6px 20px rgba(23,31,40,0.08);
+      color-scheme: light;
     }
-    header h1 { font-size: 2.2rem; margin-bottom: 0.5rem; }
-    header p { font-size: 1.1rem; opacity: 0.9; }
+    @media (prefers-color-scheme:dark){
+      :root{
+        --bg: #0e0f12;
+        --card: #111214;
+        --muted:#9aa3ad;
+        --accent: #6bc4c8;
+        --accent-2: #4ec5d6;
+        --glass: rgba(255,255,255,0.03);
+        --shadow: 0 6px 30px rgba(0,0,0,0.6);
+        color-scheme: dark;
+      }
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;}
+    body{
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background: linear-gradient(180deg,var(--bg),#e9f3f8 60%);
+      margin:0; color: #e9eef2; background-color:var(--bg);
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      padding:2rem; transition: background 0.3s ease;
+    }
 
-    .tabs {
-      display: flex; flex-wrap: wrap; justify-content: center;
-      background: white; box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-    .tabs button {
-      padding: 0.8rem 1.2rem; margin: 0.5rem;
-      border: 2px solid #2c5364; border-radius: 8px;
-      background: white; color: #2c5364; cursor: pointer;
-      font-weight: 500; transition: 0.3s;
-    }
-    .tabs button.active, .tabs button:hover {
-      background: #2c5364; color: white;
-    }
-    section {
-      max-width: 900px; margin: auto; background: white;
-      padding: 2rem; margin-top: 2rem; border-radius: 12px;
-      box-shadow: 0 0 12px rgba(0,0,0,0.05); display: none;
-      opacity: 0; transform: translateY(30px);
-      transition: all 0.4s ease;
-    }
-    section.active { display: block; opacity: 1; transform: translateY(0); }
-    h2 { color: #2c5364; margin-bottom: 1rem; }
-    ul li { margin-bottom: 0.6rem; }
+    /* Container */
+    .container{max-width:1100px;margin:0 auto;}
 
-    .project-card {
-      padding: 1rem; border: 1px solid #eee; border-radius: 10px;
-      margin-bottom: 1rem; background: #fafafa; transition: 0.3s;
-    }
-    .project-card:hover { transform: translateY(-5px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    /* Top bar */
+    header.site-header{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.1rem;border-radius:12px;background:linear-gradient(90deg,rgba(255,255,255,0.04),transparent);box-shadow:var(--shadow);backdrop-filter: blur(6px);}
+    .brand{display:flex;gap:0.9rem;align-items:center}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-family:'JetBrains Mono';font-size:18px}
+    .brand h1{font-size:1.05rem;margin:0;color:var(--accent);}
+    .brand p{margin:0;font-size:0.82rem;color:var(--muted)}
 
-    footer {
-      text-align: center; padding: 1.5rem; background: #2c5364; color: white; margin-top: 3rem;
-    }
-    .dark-mode { background: #121212; color: #f5f5f5; }
-    .dark-mode section { background: #1e1e1e; color: #f5f5f5; }
-    .dark-mode header { background: linear-gradient(135deg, #000, #1f1f1f); }
-    .dark-toggle {
-      position: absolute; top: 1rem; right: 1rem;
-      background: white; color: #2c5364; border: none; padding: 0.5rem 1rem;
-      border-radius: 5px; font-weight: bold; cursor: pointer;
-    }
+    nav.top-nav{display:flex;gap:0.5rem;align-items:center}
+    .nav-link{padding:0.45rem 0.85rem;border-radius:10px;background:transparent;border:none;color:var(--muted);font-weight:600;cursor:pointer}
+    .nav-link:hover{background:var(--glass);color:var(--accent)}
+
+    .actions{display:flex;align-items:center;gap:.6rem}
+    .btn{background:var(--accent);color:white;padding:0.55rem 0.9rem;border-radius:10px;border:none;font-weight:700;cursor:pointer}
+    .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:1.4rem;padding:1.6rem;margin-top:1rem;border-radius:16px;background:linear-gradient(180deg,var(--card),rgba(255,255,255,0.02));box-shadow:var(--shadow);align-items:center}
+    @media (max-width:920px){ .hero{grid-template-columns:1fr; padding:1rem} }
+    .hero-left h2{font-size:1.6rem;margin:0 0 .4rem;color:var(--accent)}
+    .hero-left p{margin:0 0 1rem;color:var(--muted);line-height:1.5}
+    .cta-row{display:flex;gap:.6rem;flex-wrap:wrap}
+
+    .profile-card{padding:1rem;border-radius:12px;background:linear-gradient(180deg, rgba(0,0,0,0.02), transparent);min-height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.8rem}
+    .avatar{width:110px;height:110px;border-radius:18px;background:linear-gradient(180deg,var(--accent-2),var(--accent));display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono';font-weight:700;font-size:26px;color:white}
+    .role{font-weight:700;color:var(--accent);}
+    .socials{display:flex;gap:.4rem}
+    .chip{padding:.35rem .6rem;border-radius:999px;background:var(--glass);font-weight:600;color:var(--muted)}
+
+    /* Sections grid */
+    .grid-2{display:grid;grid-template-columns:2fr 1fr;gap:1rem;margin-top:1rem}
+    @media (max-width:920px){ .grid-2{grid-template-columns:1fr} }
+
+    /* Cards */
+    .card{background:var(--card);border-radius:12px;padding:1rem;box-shadow:var(--shadow);color:inherit}
+    h3{margin:0 0 0.6rem;color:var(--accent);}
+    p.muted{color:var(--muted);margin:0 0 1rem}
+
+    /* Skills */
+    .skills-list{display:grid;grid-template-columns:repeat(2,1fr);gap:0.8rem}
+    @media (max-width:560px){ .skills-list{grid-template-columns:1fr} }
+    .skill{display:flex;flex-direction:column;gap:0.4rem}
+    .skill .label{display:flex;justify-content:space-between;font-weight:700;color:var(--muted);font-size:0.9rem}
+    .bar{height:10px;background:rgba(0,0,0,0.06);border-radius:999px;overflow:hidden}
+    .bar > i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));width:40%;}
+
+    /* Projects */
+    .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+    @media (max-width:920px){ .projects{grid-template-columns:1fr} }
+    .project{display:flex;gap:1rem;padding:1rem;border-radius:12px;background:linear-gradient(180deg,rgba(0,0,0,0.02),transparent);align-items:flex-start}
+    .project .thumb{width:96px;height:64px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:white;font-weight:800}
+    .project h4{margin:0;color:var(--accent);}
+    .project p{margin:.2rem 0;color:var(--muted);font-size:0.95rem}
+    .tags{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.5rem}
+    .tag{padding:.25rem .45rem;border-radius:8px;background:var(--glass);font-weight:700;font-size:0.78rem;color:var(--muted)}
+
+    /* Experience timeline */
+    .timeline{display:flex;flex-direction:column;gap:.6rem}
+    .exp{display:flex;gap:0.8rem;align-items:flex-start}
+    .dot{width:12px;height:12px;border-radius:50%;background:var(--accent);margin-top:.5rem}
+    .exp h5{margin:0;color:var(--accent);}
+    .exp p{margin:0;color:var(--muted);font-size:0.95rem}
+
+    /* Contact */
+    form.contact{display:grid;gap:.6rem}
+    input,textarea{width:100%;padding:.6rem;border-radius:10px;border:1px solid rgba(0,0,0,0.06);background:transparent;font-size:0.95rem;color:inherit}
+    textarea{min-height:120px;resize:vertical}
+    .small{font-size:0.85rem;color:var(--muted)}
+
+    footer.site-footer{text-align:center;margin-top:1.4rem;padding:1rem;border-radius:10px;background:linear-gradient(180deg,transparent,rgba(0,0,0,0.02));color:var(--muted)}
+
+    /* accessibility focus */
+    .nav-link:focus, .btn:focus, input:focus, textarea:focus{outline:3px solid rgba(60,150,170,0.18);outline-offset:3px}
+
+    /* small helpers */
+    .muted-text{color:var(--muted)}
+
+    /* Animations */
+    .fade-up{opacity:0;transform:translateY(10px);animation:fadeUp .6s ease forwards}
+    .delay-1{animation-delay:.12s}
+    .delay-2{animation-delay:.18s}
+    @keyframes fadeUp{to{opacity:1;transform:none}}
+
   </style>
 </head>
 <body>
-<header>
-  <button class="dark-toggle" onclick="toggleDarkMode()">🌙</button>
-  <h1>Gowtham Bharath</h1>
-  <p>AI Engineer | Cybersecurity Enthusiast | Tech Explorer 🚀</p>
-</header>
+  <div class="container">
+    <header class="site-header fade-up">
+      <div class="brand">
+        <div class="logo">GB</div>
+        <div>
+          <h1>Gowtham Bharath</h1>
+          <p class="muted-text">AI Engineer • Cybersecurity • Android</p>
+        </div>
+      </div>
 
-<div class="tabs">
-  <button class="tab-btn active" data-tab="about">About</button>
-  <button class="tab-btn" data-tab="skills">Skills</button>
-  <button class="tab-btn" data-tab="projects">Projects</button>
-  <button class="tab-btn" data-tab="experience">Experience</button>
-  <button class="tab-btn" data-tab="contact">Contact</button>
-</div>
+      <nav class="top-nav" aria-label="Main Navigation">
+        <button class="nav-link" data-target="#about">About</button>
+        <button class="nav-link" data-target="#skills">Skills</button>
+        <button class="nav-link" data-target="#projects">Projects</button>
+        <button class="nav-link" data-target="#experience">Experience</button>
+        <button class="nav-link" data-target="#contact">Contact</button>
+      </nav>
 
-<section id="about" class="active">
-  <h2>About Me</h2>
-  <p>I'm <b>Gowtham Bharath</b>, a passionate <b>AI & Cybersecurity enthusiast</b> from India.  
-     I build <b>AI models (Infinity 2.0)</b>, deploy them on mobile using <b>TFLite & Kotlin</b>, and also work on <b>Flask backends</b> for full-stack AI.  
-     I love exploring <b>blockchain, cloud security, IoT, and space science</b>.  
-     My long-term vision is to create scalable, intelligent systems that blend <b>AI + Cybersecurity</b> to make technology safe & futuristic.</p>
-</section>
+      <div class="actions">
+        <a class="btn" href="#projects">View Projects</a>
+        <a class="btn secondary" href="/resume.pdf" download>Download Resume</a>
+      </div>
+    </header>
 
-<section id="skills">
-  <h2>Skills</h2>
-  <ul>
-    <li>⚡ Machine Learning & AI (TensorFlow Lite, Transformers)</li>
-    <li>☁ Cloud & Backend (Flask, Render, IBM Cloud)</li>
-    <li>🔐 Cybersecurity & Ethical Hacking</li>
-    <li>📱 Android Development (Jetpack Compose + Kotlin)</li>
-    <li>🛠 Data Structures & Algorithms (Kotlin, Python)</li>
-    <li>🔗 Blockchain & IoT</li>
-  </ul>
-</section>
+    <!-- HERO -->
+    <section class="hero fade-up delay-1" id="about">
+      <div class="hero-left">
+        <h2>Hi — I'm Gowtham. I build intelligent, secure systems.</h2>
+        <p class="muted-text">I create custom AI models (Infinity 2.0), convert them to TFLite for mobile, and build resilient backends. I also work on cloud security, blockchain prototypes and produce tech content.</p>
+        <div class="cta-row">
+          <a class="btn" href="#contact">Hire / Collaborate</a>
+          <a class="btn secondary" href="https://github.com/techtrainer20" target="_blank">GitHub</a>
+          <span class="chip">Based in India</span>
+        </div>
+      </div>
 
-<section id="projects">
-  <h2>Projects</h2>
-  <div class="project-card">
-    <b>Infinity 2.0 – Personal AI Model</b>
-    <p>Custom-built AI model trained from scratch, optimized into <b>TFLite</b> and deployed in Android chatbot.</p>
+      <aside class="profile-card">
+        <div class="avatar">GB</div>
+        <div style="text-align:center">
+          <div class="role">AI Engineer & Cybersecurity Enthusiast</div>
+          <div class="muted-text">TensorFlow • Kotlin • Flask • TFLite</div>
+        </div>
+        <div class="socials">
+          <a class="chip" href="mailto:gowtham@example.com">Email</a>
+          <a class="chip" href="https://github.com/techtrainer20" target="_blank">GitHub</a>
+          <a class="chip" href="https://youtube.com" target="_blank">YouTube</a>
+        </div>
+      </aside>
+    </section>
+
+    <!-- MAIN GRID -->
+    <div class="grid-2">
+      <main>
+        <!-- Skills -->
+        <div class="card fade-up delay-2" id="skills" tabindex="-1">
+          <h3>Skills</h3>
+          <p class="muted">Areas I work in — with practical experience building models, mobile integrations and security tooling.</p>
+          <div class="skills-list">
+            <div class="skill">
+              <div class="label"><span>Machine Learning (TFLite, TensorFlow)</span><span>85%</span></div>
+              <div class="bar"><i style="width:85%"></i></div>
+            </div>
+
+            <div class="skill">
+              <div class="label"><span>Android (Kotlin / Jetpack Compose)</span><span>82%</span></div>
+              <div class="bar"><i style="width:82%"></i></div>
+            </div>
+
+            <div class="skill">
+              <div class="label"><span>Flask & Backend</span><span>78%</span></div>
+              <div class="bar"><i style="width:78%"></i></div>
+            </div>
+
+            <div class="skill">
+              <div class="label"><span>Cybersecurity / Pen-testing</span><span>76%</span></div>
+              <div class="bar"><i style="width:76%"></i></div>
+            </div>
+
+            <div class="skill">
+              <div class="label"><span>Data Structures & Algorithms</span><span>80%</span></div>
+              <div class="bar"><i style="width:80%"></i></div>
+            </div>
+
+            <div class="skill">
+              <div class="label"><span>Blockchain & IoT</span><span>68%</span></div>
+              <div class="bar"><i style="width:68%"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Projects -->
+        <div class="card fade-up" id="projects" style="margin-top:1rem" tabindex="-1">
+          <h3>Selected Projects</h3>
+          <p class="muted">A few highlights — with links to repositories and demos where possible.</p>
+
+          <div class="projects">
+            <article class="project" aria-labelledby="p1">
+              <div class="thumb">I2</div>
+              <div>
+                <h4 id="p1">Infinity 2.0 — Personal AI Model</h4>
+                <p>Custom transformer-style model trained from scratch, exported to TFLite and integrated into an offline chatbot for Android.</p>
+                <div class="tags"><span class="tag">TensorFlow</span><span class="tag">TFLite</span><span class="tag">Kotlin</span></div>
+              </div>
+            </article>
+
+            <article class="project" aria-labelledby="p2">
+              <div class="thumb">HC</div>
+              <div>
+                <h4 id="p2">Hybrid Chatbot (Offline + Online)</h4>
+                <p>Jetpack Compose UI with offline TFLite model and Flask fallback endpoint — seamless user experience and graceful degradation.</p>
+                <div class="tags"><span class="tag">Flask</span><span class="tag">Compose</span><span class="tag">Fallback</span></div>
+              </div>
+            </article>
+
+            <article class="project" aria-labelledby="p3">
+              <div class="thumb">BC</div>
+              <div>
+                <h4 id="p3">Blockchain Security Demo</h4>
+                <p>Prototype for secure transactions using lightweight consensus and AWS/IBM cloud integration for key management.</p>
+                <div class="tags"><span class="tag">Blockchain</span><span class="tag">Cloud</span></div>
+              </div>
+            </article>
+
+            <article class="project" aria-labelledby="p4">
+              <div class="thumb">YT</div>
+              <div>
+                <h4 id="p4">Amazing Space Facts Channel</h4>
+                <p>Content creation around space topics — scripting, voiceover (ElevenLabs), and editing workflows for short-form videos.</p>
+                <div class="tags"><span class="tag">Content</span><span class="tag">YouTube</span></div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- Experience -->
+        <div class="card fade-up" id="experience" style="margin-top:1rem" tabindex="-1">
+          <h3>Experience</h3>
+          <div class="timeline">
+            <div class="exp">
+              <div class="dot" aria-hidden="true"></div>
+              <div>
+                <h5>AI Developer — Personal Projects</h5>
+                <p class="muted">Building Infinity 2.0 and mobile integrations — model training, optimization and deployment to Android (TFLite).</p>
+              </div>
+            </div>
+
+            <div class="exp">
+              <div class="dot"></div>
+              <div>
+                <h5>Freelance Penetration Tester</h5>
+                <p class="muted">Security assessments, vulnerability scanning and remediation guidance for startups.</p>
+              </div>
+            </div>
+
+            <div class="exp">
+              <div class="dot"></div>
+              <div>
+                <h5>Content Creator — Space Facts</h5>
+                <p class="muted">Scriptwriting, voice conversion and video production for educational content about space.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </main>
+
+      <aside>
+        <!-- Contact Card -->
+        <div class="card fade-up" style="position:sticky;top:1rem" id="contact" tabindex="-1">
+          <h3>Contact</h3>
+          <p class="muted">Want to collaborate or hire? Send a quick message — I usually respond within a few days.</p>
+
+          <form class="contact" onsubmit="handleContact(event)">
+            <label class="small">Name<input id="name" required placeholder="Your full name"></label>
+            <label class="small">Email<input id="email" type="email" required placeholder="name@example.com"></label>
+            <label class="small">Message<textarea id="message" required placeholder="Briefly tell me about the project"></textarea></label>
+            <div style="display:flex;gap:.5rem;align-items:center">
+              <button type="submit" class="btn">Send Message</button>
+              <button type="button" class="btn secondary" onclick="openMail()">Email Me</button>
+            </div>
+            <div id="contactResult" class="small muted-text" role="status" aria-live="polite" style="margin-top:.5rem"></div>
+          </form>
+
+          <hr style="margin:1rem 0;border:none;border-top:1px solid rgba(0,0,0,0.04)">
+          <div style="display:flex;flex-direction:column;gap:.4rem">
+            <div><strong>Email:</strong> <a href="mailto:gowtham@example.com">gowtham@example.com</a></div>
+            <div><strong>GitHub:</strong> <a href="https://github.com/techtrainer20" target="_blank">techtrainer20</a></div>
+            <div><strong>YouTube:</strong> <a href="https://youtube.com" target="_blank">Amazing Space Facts</a></div>
+          </div>
+        </div>
+
+        <!-- Quick links / badges -->
+        <div class="card fade-up" style="margin-top:1rem">
+          <h3>Quick Info</h3>
+          <p class="muted">Open to freelance work, collaborations and mentoring.</p>
+          <div style="display:flex;gap:.4rem;margin-top:.6rem;flex-wrap:wrap">
+            <span class="tag">Open to work</span>
+            <span class="tag">Available for freelance</span>
+            <span class="tag">AI / Security</span>
+          </div>
+        </div>
+
+      </aside>
+    </div>
+
+    <footer class="site-footer">
+      <div>&copy; 2025 Gowtham Bharath — Built with ❤️ and curiosity</div>
+      <div class="muted-text" style="margin-top:6px">Designed for clarity, accessibility and fast load.</div>
+    </footer>
+
   </div>
-  <div class="project-card">
-    <b>Hybrid Chatbot (Offline + Online)</b>
-    <p>Jetpack Compose chatbot with offline <b>TFLite model</b> & online Flask backend fallback.</p>
-  </div>
-  <div class="project-card">
-    <b>Blockchain Security Demo</b>
-    <p>Built a prototype blockchain for secure transactions & cloud integration.</p>
-  </div>
-  <div class="project-card">
-    <b>Space Facts Channel</b>
-    <p>YouTube channel sharing amazing facts about the universe 🌌</p>
-  </div>
-</section>
 
-<section id="experience">
-  <h2>Experience</h2>
-  <ul>
-    <li><b>AI Developer (Self-Project)</b> – Building & deploying <b>Infinity 2.0</b></li>
-    <li><b>Freelance Penetration Tester</b> – Worked with startups on <b>cybersecurity assessments</b></li>
-    <li><b>Content Creator</b> – Runs a <b>space facts YouTube channel</b></li>
-  </ul>
-</section>
-
-<section id="contact">
-  <h2>Contact</h2>
-  <p>Email: <a href="mailto:gowtham@example.com">gowtham@example.com</a></p>
-  <p>GitHub: <a href="https://github.com/techtrainer20" target="_blank">github.com/techtrainer20</a></p>
-  <p>YouTube: <a href="https://youtube.com" target="_blank">Amazing Space Facts</a></p>
-</section>
-
-<footer>
-  <p>&copy; 2025 Gowtham Bharath. Built with ❤️ & AI.</p>
-</footer>
-
-<script>
-  const tabButtons = document.querySelectorAll('.tab-btn');
-  const tabSections = document.querySelectorAll('section');
-  tabButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelector('.tab-btn.active').classList.remove('active');
-      btn.classList.add('active');
-      tabSections.forEach(sec => sec.classList.remove('active'));
-      document.getElementById(btn.getAttribute('data-tab')).classList.add('active');
+  <script>
+    // Smooth nav scrolling + focus management
+    document.querySelectorAll('.nav-link').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const target = document.querySelector(btn.dataset.target);
+        if(target){
+          target.scrollIntoView({behavior:'smooth', block:'start'});
+          // put keyboard focus for accessibility after scrolling
+          setTimeout(()=>{target.focus({preventScroll:true})}, 600);
+        }
+      });
     });
-  });
-  function toggleDarkMode() {
-    document.body.classList.toggle('dark-mode');
-  }
-</script>
+
+    // Contact form (no backend) - simple client side behavior
+    function handleContact(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const res = document.getElementById('contactResult');
+      if(!name || !email || !message){ res.textContent = 'Please fill all fields.'; return; }
+      // In real site: call API endpoint or send to email service
+      res.textContent = 'Thanks, ' + name.split(' ')[0] + '! Your message has been received (demo).';
+      e.target.reset();
+    }
+    function openMail(){ window.location = 'mailto:gowtham@example.com'; }
+
+    // Simple reveal animations when in viewport
+    const reveal = document.querySelectorAll('.fade-up');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(en=>{ if(en.isIntersecting){ en.target.style.animationPlayState='running'; en.target.classList.remove('fade-up'); }});
+    },{threshold:0.12});
+    reveal.forEach(r => { r.style.animationPlayState='paused'; io.observe(r); });
+
+  </script>
 </body>
 </html>

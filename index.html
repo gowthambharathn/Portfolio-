@@ -38,12 +38,14 @@
 
     .nav-links {
       display: flex;
-      gap: 2rem;
+      gap: 1.5rem;
+      flex-wrap: wrap;
     }
 
     .nav-links a {
       color: #aaa;
       transition: color 0.3s;
+      font-size: 0.95rem;
     }
 
     .nav-links a:hover {
@@ -54,6 +56,7 @@
       margin-left: 1rem;
       color: #aaa;
       transition: color 0.3s;
+      font-size: 0.95rem;
     }
 
     .socials a:hover {
@@ -92,6 +95,7 @@
       border-radius: 8px;
       font-weight: bold;
       transition: transform 0.3s, box-shadow 0.3s;
+      font-size: 0.95rem;
     }
 
     .btn:hover {
@@ -106,8 +110,8 @@
     }
 
     .hero-img img {
-      width: 300px;
-      height: 300px;
+      width: 280px;
+      height: 280px;
       border-radius: 50%;
       border: 4px solid #3399ff;
       object-fit: cover;
@@ -146,6 +150,12 @@
       color: #3399ff;
     }
 
+    section p {
+      text-align: center;
+      color: #ccc;
+      margin-bottom: 1.5rem;
+    }
+
     .skills, .projects, .certificates {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -175,7 +185,8 @@
     /* Contact */
     .contact p {
       text-align: center;
-      margin-bottom: 1rem;
+      margin-bottom: 0.8rem;
+      color: #bbb;
     }
 
     /* Footer */
@@ -185,16 +196,28 @@
       padding: 1.5rem;
       margin-top: 2rem;
       color: #777;
+      font-size: 0.9rem;
     }
 
+    /* Responsive */
     @media (max-width: 768px) {
       .hero {
         flex-direction: column;
         text-align: center;
+        padding: 3rem 5%;
       }
 
       .hero-text {
         margin-bottom: 2rem;
+      }
+
+      .hero-img img {
+        width: 220px;
+        height: 220px;
+      }
+
+      .nav-links {
+        gap: 1rem;
       }
     }
   </style>
@@ -212,8 +235,8 @@
       <a href="#contact">Contact</a>
     </nav>
     <div class="socials">
-      <a href="#">LinkedIn</a>
-      <a href="#">GitHub</a>
+      <a href="https://www.linkedin.com/in/gowtham289/" target="_blank">LinkedIn</a>
+      <a href="https://github.com/gowthambharathn" target="_blank">GitHub</a>
     </div>
   </header>
 
@@ -221,26 +244,18 @@
   <section class="hero" id="home">
     <div class="hero-text">
       <h1>Hi, I'm Gowtham Bharath</h1>
-      <p>I am a passionate B.Sc. IT student at R.D. National College, specializing in Android app development with Kotlin and a strong interest in AI. I also have knowledge of Java and SQL for database management. During my internship at Skynet Artificial Intelligence Pvt. Ltd., I gained hands-on experience in building user-friendly applications and improving problem-solving skills. Beyond academics, I stay updated on tech and finance trends, enjoy reading about technology and personal development, and play video games that spark creativity and strategic thinking</p>
-      <a href="#contact" class="btn">Let’s get started →</a>
+      <p>I am a B.Sc. IT student at R.D. National College, specializing in Android development with Kotlin and exploring the world of AI. I have experience with Java, SQL, and building intelligent, user-friendly applications. My internship at Skynet Artificial Intelligence Pvt. Ltd. enhanced my problem-solving and real-world project skills. Outside academics, I explore technology trends, finance, personal growth, and enjoy video games that spark creativity and strategy.</p>
+      <a href="#contact" class="btn">Let’s Connect →</a>
     </div>
     <div class="hero-img">
       <img src="profile.jpg" alt="Profile Photo">
     </div>
   </section>
 
-  <!-- Worked With -->
-  <div class="worked-with">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Logo-clickup.svg" alt="ClickUp">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Dropbox_Icon.svg" alt="Dropbox">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Stripe_Logo%2C_revised_2016.svg" alt="Stripe">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Elastic_logo.svg" alt="Elastic">
-  </div>
-
   <!-- About -->
   <section id="about">
     <h2>About Me</h2>
-    <p>Hello! I'm Gowtham, a passionate AI and Cybersecurity enthusiast. I love building intelligent solutions, exploring the cosmos of technology, and sharing knowledge. With a strong foundation in full-stack development, I’m working on projects that merge innovation with security.</p>
+    <p>Hello! I'm Gowtham, an AI and Cybersecurity enthusiast who enjoys blending creativity with technology. I have a strong foundation in mobile and full-stack development, and I love working on projects that combine innovation, security, and real-world impact. My goal is to keep learning, build meaningful tech solutions, and share knowledge with others.</p>
   </section>
 
   <!-- Skills -->
@@ -248,33 +263,32 @@
     <h2>Skills</h2>
     <div class="skills">
       <div class="card">Mobile App Development</div>
-      <div class="card">MVVM Architure</div>
-      <div class="card">Kotlin / Python </div>
-      <div class="card">PC Building</div>
+      <div class="card">MVVM Architecture</div>
+      <div class="card">Kotlin / Python</div>
+      <div class="card">Java & SQL</div>
       <div class="card">AI Development</div>
-      <div class="card">Tech Enthusiast</div>
+      <div class="card">PC Building & Tech Enthusiasm</div>
     </div>
   </section>
 
   <!-- Projects -->
-<section id="projects">
-  <h2>Projects</h2>
-  <div class="projects">
-    <div class="card">
-      <h3>RK Chit App</h3>
-      <p>An Android application for managing chit funds, including member tracking, payments, and notifications.</p>
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects">
+      <div class="card">
+        <h3>RK Chit App</h3>
+        <p>An Android app for managing chit funds with member tracking, payments, and notifications.</p>
+      </div>
+      <div class="card">
+        <h3>Infinity AI</h3>
+        <p>A smart AI chatbot built with TensorFlow Lite, integrated into Android for offline & online usage.</p>
+      </div>
+      <div class="card">
+        <h3>Snake Game</h3>
+        <p>A classic Snake game built with Java/Kotlin, featuring smooth controls and an engaging UI.</p>
+      </div>
     </div>
-    <div class="card">
-      <h3>Infinity AI</h3>
-      <p>A smart AI chatbot built with TensorFlow Lite, integrated into Android for both offline and online conversations.</p>
-    </div>
-    <div class="card">
-      <h3>Snake Game</h3>
-      <p>A classic Snake game built with Java/Kotlin, featuring smooth controls and an engaging UI.</p>
-    </div>
-  </div>
-</section>
-
+  </section>
 
   <!-- Certificate -->
   <section id="certificate">
@@ -291,7 +305,7 @@
   <section id="contact" class="contact">
     <h2>Get in Touch</h2>
     <p>📧 barathinfo28@gmail.com</p>
-    <p>🌐 https://www.linkedin.com/in/gowtham289/</p>
+    <p>🌐 <a href="https://www.linkedin.com/in/gowtham289/" target="_blank">linkedin.com/in/gowtham289</a></p>
   </section>
 
   <!-- Footer -->
@@ -301,6 +315,3 @@
 
 </body>
 </html>
-
-
-

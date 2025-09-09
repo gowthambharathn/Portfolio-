@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -147,7 +146,7 @@
       color: #00ff66;
     }
 
-    .skills, .projects {
+    .skills, .projects, .certificates {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.5rem;
@@ -158,11 +157,19 @@
       padding: 1.5rem;
       border-radius: 10px;
       transition: transform 0.3s, box-shadow 0.3s;
+      text-align: center;
     }
 
     .card:hover {
       transform: translateY(-5px);
       box-shadow: 0 0 15px rgba(0, 255, 102, 0.3);
+    }
+
+    .card img {
+      width: 100%;
+      max-width: 250px;
+      border-radius: 10px;
+      margin-top: 1rem;
     }
 
     /* Contact */
@@ -201,8 +208,8 @@
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
-      <a href="gowthambharath.jpeg" target="_blank">Certificate</a>
-      <a href="contact">Contact</a>
+      <a href="#certificate">Certificate</a>
+      <a href="#contact">Contact</a>
     </nav>
     <div class="socials">
       <a href="#">LinkedIn</a>
@@ -218,7 +225,7 @@
       <a href="#contact" class="btn">Let’s get started →</a>
     </div>
     <div class="hero-img">
-      <img src="profile.jpg" alt="Profile Photo">
+      <img src="profile.jpeg" alt="Profile Photo">
     </div>
   </section>
 
@@ -268,6 +275,19 @@
     </div>
   </section>
 
+  <!-- Certificate -->
+  <section id="certificate">
+    <h2>Certificate</h2>
+    <div class="certificates">
+      <div class="card">
+        <h3>Web Development Fundamentals</h3>
+        <p>Click below to view certificate:</p>
+        <a href="gowthambharath.jpeg" target="_blank" class="btn">View Certificate</a>
+        <img src="profile.jpeg" alt="Profile Preview">
+      </div>
+    </div>
+  </section>
+
   <!-- Contact -->
   <section id="contact" class="contact">
     <h2>Get in Touch</h2>
@@ -282,8 +302,3 @@
 
 </body>
 </html>
-
-
-
-
-

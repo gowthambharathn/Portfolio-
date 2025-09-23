@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -131,6 +132,10 @@
       color: #3399ff;
     }
 
+    .card h3 {
+      margin-bottom: 2rem;
+    }
+
     section p {
       text-align: center;
       color: #ccc;
@@ -141,7 +146,9 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.5rem;
+      padding: 1rem; /* added padding inside the grid container */
     }
+
 
     .card {
       background: #1a1a1a;
@@ -196,10 +203,10 @@
         width: 220px;
         height: 220px;
       }
-
       .nav-links {
         gap: 1rem;
       }
+
     }
   </style>
 </head>
@@ -224,8 +231,7 @@
   <!-- Hero -->
   <section class="hero" id="home">
     <div class="hero-text">
-      <h1>Hi, I'm Gowtham Bharath</h1>
-      <p>I am a B.Sc. IT student at R.D. National College, specializing in Android development with Kotlin and exploring the world of AI. I have experience with Java, SQL, and building intelligent, user-friendly applications. My internship at Skynet Artificial Intelligence Pvt. Ltd. enhanced my problem-solving and real-world project skills. Outside academics, I explore technology trends, finance, personal growth, and enjoy video games that spark creativity and strategy.</p>
+      <h1>Hi, I'm Gowtham Bharath N</h1>
       <a href="#contact" class="btn">Let’s Connect →</a>
     </div>
     <div class="hero-img">
@@ -236,7 +242,7 @@
   <!-- About -->
   <section id="about">
     <h2>About Me</h2>
-    <p>Hello! I'm Gowtham, an AI and Cybersecurity enthusiast who enjoys blending creativity with technology. I have a strong foundation in mobile and full-stack development, and I love working on projects that combine innovation, security, and real-world impact. My goal is to keep learning, build meaningful tech solutions, and share knowledge with others.</p>
+      <p>I am a B.Sc. IT student at R.D. National College, specializing in Android development with Kotlin and exploring the world of AI. I have experience with Java, SQL, and building intelligent, user-friendly applications. My internship at Skynet Artificial Intelligence Pvt. Ltd. enhanced my problem-solving and real-world project skills. Outside academics, I explore technology trends, finance, personal growth, and enjoy video games that spark creativity and strategy.</p>
   </section>
 
   <!-- Skills -->
@@ -248,7 +254,7 @@
       <div class="card">Kotlin / Python</div>
       <div class="card">Java & SQL</div>
       <div class="card">AI Development</div>
-      <div class="card">PC Building & Tech Enthusiasm</div>
+      <div class="card">PC Building</div>
     </div>
   </section>
 
@@ -258,15 +264,27 @@
     <div class="projects">
       <div class="card">
         <h3>RK Chit App</h3>
-        <p>An Android app for managing chit funds with member tracking, payments, and notifications.</p>
+        <p>An Android app for managing chit funds, including member tracking, payment processing, and notifications.</p>
       </div>
       <div class="card">
         <h3>Infinity AI</h3>
-        <p>A smart AI chatbot built with TensorFlow Lite, integrated into Android for offline & online usage.</p>
+        <p>An AI chatbot built with TensorFlow Lite, integrated into Android for both offline and online use.</p>
       </div>
       <div class="card">
         <h3>Snake Game</h3>
-        <p>A classic Snake game built with Java/Kotlin, featuring smooth controls and an engaging UI.</p>
+        <p>A classic Snake game developed in Java/Kotlin, featuring smooth controls and an engaging user interface.</p>
+      </div>
+      <div class="card">
+        <h3>View My Marks</h3>
+        <p>A student portal to view marks using bar graphs, pie charts, and multiline graphs for better visualization.</p>
+      </div>
+      <div class="card">
+        <h3>Digital Classroom</h3>
+        <p>A platform where students can access YouTube lessons, download study materials, and take online tests.</p>
+      </div>
+        <div class="card">
+        <h3>AWS Portfolio Hosting</h3>
+        <p>Learned how to create an AWS instance and host a website, gaining hands-on experience with cloud deployment and server management.</p>
       </div>
     </div>
   </section>
@@ -276,8 +294,20 @@
     <h2>Certificate</h2>
     <div class="certificates">
       <div class="card">
-        <h3>Web Development Fundamentals</h3>
-        <a href="gowthambharath.jpg" target="_blank" class="btn">View Certificate</a>
+        <h3 class="h3">Web Development Fundamentals</h3>
+        <a href="webdevcert.jpg" target="_blank" class="btn">View Certificate</a>
+      </div>
+    </div>
+        <div class="certificates">
+      <div class="card">
+        <h3>Skynet Interview</h3>
+        <a href="skynetdevcert.jpeg" target="_blank" class="btn">View Certificate</a>
+      </div>
+    </div>
+        <div class="certificates">
+      <div class="card">
+        <h3>Best Developer</h3>
+        <a href="skynetbestdev.jpeg" target="_blank" class="btn">View Certificate</a>
       </div>
     </div>
   </section>
@@ -296,4 +326,5 @@
 
 </body>
 </html>
+
 

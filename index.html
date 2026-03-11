@@ -282,12 +282,20 @@
       text-align: center;
     }
 
-    .gallery-grid{
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 15px;
-      margin-top: 30px;
-    }
+.gallery-grid {
+  display: grid;
+  /* This ensures images are at least 150px but fill space otherwise */
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+  gap: 15px;
+  margin-top: 30px;
+}
+
+/* Ensure images maintain a good aspect ratio on mobile */
+@media (max-width: 600px) {
+  .gallery-grid img {
+    height: 180px; /* Slightly shorter for smaller screens */
+  }
+}
 
     .gallery-grid img{
       width: 100%;
@@ -320,11 +328,22 @@ section h2{
   gap: 2rem;
 }
 
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .hero h1 { font-size: 3.2rem; }
-      .contact-value { font-size: 1.3rem; }
-    }
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hero h1 { font-size: 2.8rem; } /* Slightly smaller hero for mobile */
+  
+  /* Reduced contact size for better fit */
+  .contact-value { 
+    font-size: 0.9rem; 
+    word-break: break-all; /* Prevents long emails from overflowing the screen */
+    display: block;
+    padding: 0 10px;
+  }
+  
+  .contact-label {
+    letter-spacing: 3px; /* Tighter tracking for smaller screens */
+  }
+}
   </style>
 </head>
 <body>
@@ -348,7 +367,7 @@ section h2{
       <img src="profile.jpg" alt="Gowtham Bharath N">
     </div>
     <h1>GOWTHAM BHARATH</h1>
-    <p>AI // ANDROID ENGINEER</p>
+    <p>AI // ANDROID INTERN</p>
   </section>
 
   <section id="summary">
@@ -439,12 +458,17 @@ section h2{
     <img src="photos/skynet/aipcday.jpeg" alt="photo">
     <img src="photos/skynet/developerexam.jpeg" alt="photo">
     <img src="photos/skynet/dothraki_2.jpeg" alt="photo">
-    <img src="photos/skynet/aipcday2.jpeg" alt="photo">
+    <img src="photos/skynet/calculator1.JPG" alt="photo">
 
     <img src="photos/skynet/developerexam2.jpeg" alt="photo">
     <img src="photos/skynet/pcbuilding.jpeg" alt="photo">
     <img src="photos/skynet/presentation.jpeg" alt="photo">
     <img src="photos/skynet/radar1.jpeg" alt="photo">
+
+    <img src="photos/skynet/salaryevent.JPG" alt="photo">
+    <img src="photos/skynet/calculator2.JPG" alt="photo">
+    <img src="photos/skynet/salaryevent2.JPG" alt="photo">
+    <img src="photos/skynet/robohackthon.JPG" alt="photo">
 
   </div>
 </section>
@@ -467,14 +491,21 @@ section h2{
   <div class="contact-row">
     <span class="contact-label">LinkedIn</span>
     <span class="contact-value">
-      <a href="https://www.linkedin.com/in/gowtham289/" target="_blank" style="color:white; text-decoration:none;">https://www.linkedin.com/in/gowthambharathn</a>
+      <a href="https://www.linkedin.com/in/gowtham289/" target="_blank" style="color:white; text-decoration:none;">linkedin.com/in/gowthambharathn</a>
     </span>
   </div>
 
   <div class="contact-row">
     <span class="contact-label">GitHub</span>
     <span class="contact-value">
-      <a href="https://github.com/gowthambharathn" target="_blank" style="color:white; text-decoration:none;">https://github.com/gowthambharathn</a>
+      <a href="https://github.com/gowthambharathn" target="_blank" style="color:white; text-decoration:none;">github.com/gowthambharathn</a>
+    </span>
+  </div>
+
+    <div class="contact-row">
+    <span class="contact-label">Instagram</span>
+    <span class="contact-value">
+      <a href="https://www.instagram.com/gowthambharath.n/" target="_blank" style="color:white; text-decoration:none;">gowthambharath.n</a>
     </span>
   </div>
 </section>

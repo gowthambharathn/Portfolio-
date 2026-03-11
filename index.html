@@ -1,330 +1,486 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gowtham Portfolio</title>
+  <title>Gowtham Bharath | Android & AI Architect</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
   <style>
-    /* Global Reset */
+    :root {
+      --bg-black: #000000;
+      --card-black: #0a0a0a;
+      --neon-blue: #0077ff;
+      --neon-blue-glow: #00d2ff;
+      --blue-gradient: linear-gradient(135deg, #0077ff 0%, #00d2ff 100%);
+      --text-gray: #a0a0a0;
+      --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
     }
 
     body {
-      background: #0e0e0e;
-      color: #fff;
-      line-height: 1.6;
+      background-color: var(--bg-black);
+      color: #ffffff;
+      overflow-x: hidden;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
+    /* --- THE "SMALL BOXES" GRID EFFECT (STRENGTHENED) --- */
+    .bg-grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      /* Visible Blue Grid Lines */
+      background-image: 
+        linear-gradient(rgba(0, 119, 255, 0.15) 1.5px, transparent 1.5px),
+        linear-gradient(90deg, rgba(0, 119, 255, 0.15) 1.5px, transparent 1.5px);
+      background-size: 40px 40px;
+      z-index: -1;
+      /* Subtle pulse animation for the boxes */
+      animation: pulseGrid 8s ease-in-out infinite;
     }
 
-    /* Navbar */
+    @keyframes pulseGrid {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 1; }
+    }
+
+    /* Vignette to focus center */
+    .bg-vignette {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, transparent 30%, black 90%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 5%;
-      background: #111;
-      position: sticky;
+      padding: 1.2rem 8%;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(20px);
+      position: fixed;
+      width: 100%;
       top: 0;
       z-index: 1000;
+      border-bottom: 1px solid rgba(0, 119, 255, 0.2);
     }
 
-    .nav-links {
-      display: flex;
-      gap: 1.5rem;
-      flex-wrap: wrap;
+    .logo {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 1rem;
+      letter-spacing: 3px;
+      color: var(--neon-blue-glow);
     }
 
     .nav-links a {
-      color: #aaa;
-      transition: color 0.3s;
-      font-size: 0.95rem;
+      color: var(--text-gray);
+      margin-left: 2rem;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-decoration: none;
+      transition: var(--transition);
     }
 
     .nav-links a:hover {
-      color: #3399ff;
-    }
-
-    .socials a {
-      margin-left: 1rem;
-      color: #aaa;
-      transition: color 0.3s;
-      font-size: 0.95rem;
-    }
-
-    .socials a:hover {
-      color: #3399ff;
+      color: var(--neon-blue-glow);
+      text-shadow: 0 0 10px var(--neon-blue);
     }
 
     /* Hero Section */
     .hero {
+      height: 100vh;
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      padding: 4rem 5%;
-      flex-wrap: wrap;
-    }
-
-    .hero-text {
-      flex: 1;
-      max-width: 500px;
-    }
-
-    .hero-text h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-    }
-
-    .hero-text p {
-      margin-bottom: 2rem;
-      color: #bbb;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 0.8rem 1.5rem;
-      background: #3399ff;
-      color: #000;
-      border-radius: 8px;
-      font-weight: bold;
-      transition: transform 0.3s, box-shadow 0.3s;
-      font-size: 0.95rem;
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 0 15px #3399ff;
+      text-align: center;
+      padding: 0 5%;
     }
 
     .hero-img {
-      flex: 1;
-      display: flex;
-      justify-content: center;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 2px solid var(--neon-blue);
+      padding: 6px;
+      box-shadow: 0 0 50px rgba(0, 119, 255, 0.4);
+      margin-bottom: 2.5rem;
     }
 
     .hero-img img {
-      width: 280px;
-      height: 280px;
+      width: 100%;
+      height: 100%;
       border-radius: 50%;
-      border: 4px solid #3399ff;
       object-fit: cover;
     }
 
-    /* Sections */
+    .hero h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(2rem, 7vw, 4rem);
+      font-weight: 900;
+      background: var(--blue-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      color: var(--text-gray);
+      font-size: 1rem;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      font-weight: 300;
+    }
+
     section {
-      padding: 4rem 5%;
-      max-width: 1000px;
+      padding: 8rem 8% 4rem;
+      max-width: 1300px;
       margin: auto;
     }
 
-    section h2 {
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-      text-align: center;
-      color: #3399ff;
+    h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.8rem;
+      margin-bottom: 4rem;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      letter-spacing: 2px;
     }
 
-    .card h3 {
-      margin-bottom: 2rem;
+    h2::before {
+      content: "";
+      width: 45px;
+      height: 3px;
+      background: var(--neon-blue);
     }
 
-    section p {
-      text-align: center;
-      color: #ccc;
-      margin-bottom: 1.5rem;
-    }
-
-    .skills, .projects, .certificates {
+    .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      padding: 1rem; /* added padding inside the grid container */
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
     }
-
 
     .card {
-      background: #1a1a1a;
-      padding: 1.5rem;
-      border-radius: 10px;
-      transition: transform 0.3s, box-shadow 0.3s;
-      text-align: center;
+      background: rgba(255, 255, 255, 0.04); /* transparent glass */
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+
+      padding: 2.5rem;
+      border-radius: 14px;
+
+      border: 1px solid rgba(255, 255, 255, 0.15);
+
+      box-shadow: 
+          0 8px 30px rgba(0, 0, 0, 0.6),
+          inset 0 0 20px rgba(255, 255, 255, 0.05);
+
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
     }
 
     .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 15px rgba(51, 153, 255, 0.3);
+      transform: translateY(-8px);
+      border-color: rgba(0,119,255,0.5);
+      box-shadow: 
+          0 20px 60px rgba(0,119,255,0.25);
     }
 
-    .card img {
+    .card h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--neon-blue-glow);
+    }
+
+    .card p {
+      color: var(--text-gray);
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+
+    /* Skill Tags */
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 1.5rem;
+    }
+
+    .tag {
+      font-size: 0.7rem;
+      padding: 5px 14px;
+      background: rgba(0, 119, 255, 0.08);
+      border: 1px solid rgba(0, 119, 255, 0.4);
+      border-radius: 4px;
+      color: #fff;
+      letter-spacing: 1px;
+    }
+
+    /* Certificate Redirect Buttons */
+.cert-btn {
+  display: block;
+  padding: 18px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--neon-blue);
+  border-radius: 40px;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  transition: var(--transition);
+}
+
+    .cert-btn:hover {
+      background: var(--neon-blue);
+      color: #000;
+      box-shadow: 0 0 25px var(--neon-blue);
+    }
+
+    /* Contact Details Block */
+    .contact-center {
+      text-align: center;
+      padding: 6rem 0;
+    }
+
+    .contact-row { margin-bottom: 3rem; }
+    .contact-label {
+      color: var(--neon-blue-glow);
+      font-size: 0.75rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .contact-value {
+      font-size: 1.3rem;
+      font-weight: 300;
+      color: #fff;
+      letter-spacing: 1px;
+    }
+
+    .photo-gallery{
+      padding: 60px 1.2%;
+      text-align: center;
+    }
+
+    .gallery-grid{
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .gallery-grid img{
       width: 100%;
-      max-width: 250px;
-      border-radius: 10px;
-      margin-top: 1rem;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 12px;
     }
 
-    /* Contact */
-    .contact p {
-      text-align: center;
-      margin-bottom: 0.8rem;
-      color: #bbb;
-    }
-
-    /* Footer */
     footer {
-      background: #111;
+      padding: 5rem;
       text-align: center;
-      padding: 1.5rem;
-      margin-top: 2rem;
-      color: #777;
-      font-size: 0.9rem;
+      color: #333;
+      font-size: 0.75rem;
+      letter-spacing: 4px;
     }
 
-    /* Responsive */
+    section{
+  max-width: 1100px;
+  margin: auto;
+  padding: 60px 20px;
+}
+
+section h2{
+  margin-bottom: 30px;
+}
+
+    .cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
     @media (max-width: 768px) {
-      .hero {
-        flex-direction: column;
-        text-align: center;
-        padding: 3rem 5%;
-      }
-
-      .hero-text {
-        margin-bottom: 2rem;
-      }
-
-      .hero-img img {
-        width: 220px;
-        height: 220px;
-      }
-      .nav-links {
-        gap: 1rem;
-      }
-
+      .nav-links { display: none; }
+      .hero h1 { font-size: 3.2rem; }
+      .contact-value { font-size: 1.3rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Navbar -->
+  <div class="bg-grid"></div>
+  <div class="bg-vignette"></div>
+
   <header>
+    <div class="logo">GOWTHAMBHARATH.XYZ</div>
     <nav class="nav-links">
       <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
+      <a href="#summary">Bio</a>
       <a href="#projects">Projects</a>
-      <a href="#certificate">Certificate</a>
+      <a href="#certificates">Certificates</a>
       <a href="#contact">Contact</a>
     </nav>
-    <div class="socials">
-      <a href="https://www.linkedin.com/in/gowtham289/" target="_blank">LinkedIn</a>
-      <a href="https://github.com/gowthambharathn" target="_blank">GitHub</a>
-    </div>
   </header>
 
-  <!-- Hero -->
   <section class="hero" id="home">
-    <div class="hero-text">
-      <h1>Hi, I'm Gowtham Bharath N</h1>
-      <a href="#contact" class="btn">Let’s Connect →</a>
-    </div>
     <div class="hero-img">
-      <img src="profile.jpg" alt="Profile Photo">
+      <img src="profile.jpg" alt="Gowtham Bharath N">
+    </div>
+    <h1>GOWTHAM BHARATH</h1>
+    <p>AI // ANDROID ENGINEER</p>
+  </section>
+
+  <section id="summary">
+    <h2>CORE SUMMARY</h2>
+    <div class="grid">
+      <div class="card" style="grid-column: span 1;">
+        <p>
+          B.Sc. Information Technology student passionate about the convergence of 
+          <strong>Android Native Development</strong> and <strong>Artificial Intelligence</strong>. 
+          Skilled in building modern, responsive mobile interfaces using 
+          <strong>Jetpack Compose</strong> and deploying efficient on-device machine learning 
+          solutions with <strong>TensorFlow Lite</strong>. Focused on creating intelligent, 
+          high-performance mobile applications and continuously pushing the boundaries 
+          of mobile engineering at <strong>gowthambharath.xyz</strong>.
+        </p>
+ </div>
+      <div class="card" style="grid-column: span 1;">
+        <h3>EXPERTISE</h3>
+        <div class="skill-tags">
+          <span class="tag">Kotlin</span>
+          <span class="tag">Jetpack Compose</span>
+          <span class="tag">Android SDK</span>
+          <span class="tag">TensorFlow</span>
+          <span class="tag">TF Lite</span>
+          <span class="tag">Pc Hardware</span>
+          <span class="tag">Firebase</span>
+          <span class="tag">SQL</span>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- About -->
-  <section id="about">
-    <h2>About Me</h2>
-      <p>I am a B.Sc. IT student at R.D. National College, specializing in Android development with Kotlin and exploring the world of AI. I have experience with Java, SQL, and building intelligent, user-friendly applications. My internship at Skynet Artificial Intelligence Pvt. Ltd. enhanced my problem-solving and real-world project skills. Outside academics, I explore technology trends, finance, personal growth, and enjoy video games that spark creativity and strategy.</p>
-  </section>
-
-  <!-- Skills -->
-  <section id="skills">
-    <h2>Skills</h2>
-    <div class="skills">
-      <div class="card">Mobile App Development</div>
-      <div class="card">MVVM Architecture</div>
-      <div class="card">Kotlin / Python</div>
-      <div class="card">Java & SQL</div>
-      <div class="card">AI Development</div>
-      <div class="card">PC Building</div>
-    </div>
-  </section>
-
-  <!-- Projects -->
   <section id="projects">
-    <h2>Projects</h2>
-    <div class="projects">
+    <h2>PROJECTS</h2>
+    <div class="grid">
       <div class="card">
-        <h3>RK Chit App</h3>
-        <p>An Android app for managing chit funds, including member tracking, payment processing, and notifications.</p>
+        <h3>01. Developer Environment</h3>
+        <p>A productivity platform designed to help junior developers easily build, manage, and complete software projects with structured tools and workflows.</p>
       </div>
+
       <div class="card">
-        <h3>Infinity AI</h3>
-        <p>An AI chatbot built with TensorFlow Lite, integrated into Android for both offline and online use.</p>
+        <h3>02. RK Chit App</h3>
+        <p>Prototype fintech application enabling users to pay chit fund installments digitally to partnered jewellery shops through an online payment system.</p>
       </div>
+
       <div class="card">
-        <h3>Snake Game</h3>
-        <p>A classic Snake game developed in Java/Kotlin, featuring smooth controls and an engaging user interface.</p>
+        <h3>03. SkynetBee Projects</h3>
+        <p>Contributed to the development of 20+ internal applications including ViewMyMark, Digital Classroom, and other productivity tools.</p>
       </div>
+
       <div class="card">
-        <h3>View My Marks</h3>
-        <p>A student portal to view marks using bar graphs, pie charts, and multiline graphs for better visualization.</p>
+        <h3>04. Play Store Applications</h3>
+        <p>Developed and published Android apps including Snake Game and TrackIt, a habit tracking application currently under Play Store review.</p>
       </div>
+
       <div class="card">
-        <h3>Digital Classroom</h3>
-        <p>A platform where students can access YouTube lessons, download study materials, and take online tests.</p>
+        <h3>05. Skynet Android Production</h3>
+        <p>Active contributor to Skynet’s Android production ecosystem, participating in real-world application development and feature integration.</p>
       </div>
-        <div class="card">
-        <h3>AWS Portfolio Hosting</h3>
-        <p>Learned how to create an AWS instance and host a website, gaining hands-on experience with cloud deployment and server management.</p>
+
+      <div class="card">
+        <h3>06. Custom AI Workstation</h3>
+        <p>Led the team in building a high-performance development workstation powered by an RTX 5070 GPU for AI model training and experimentation.</p>
       </div>
     </div>
   </section>
 
-  <!-- Certificate -->
-  <section id="certificate">
-    <h2>Certificate</h2>
-    <div class="certificates">
-      <div class="card">
-        <h3 class="h3">Web Development Fundamentals</h3>
-        <a href="webdevcert.jpg" target="_blank" class="btn">View Certificate</a>
-      </div>
-    </div>
-        <div class="certificates">
-      <div class="card">
-        <h3>Skynet Interview</h3>
-        <a href="skynetdevcert.jpeg" target="_blank" class="btn">View Certificate</a>
-      </div>
-    </div>
-        <div class="certificates">
-      <div class="card">
-        <h3>Best Developer</h3>
-        <a href="skynetbestdev.jpeg" target="_blank" class="btn">View Certificate</a>
-      </div>
+  <section id="certificates">
+    <h2>VALIDATED CREDENTIALS</h2>
+
+    <div class="cert-grid">
+
+      <a href="skynetdevcert.jpeg" target="_blank" class="cert-btn">Skynet Android Internship</a>
+      <a href="skynetbestdev.jpeg" target="_blank" class="cert-btn">Best Developer Award</a>
+      <a href="webdevcert.jpg" target="_blank" class="cert-btn">Web Development Fundamentals</a>
+
+      <!-- <a href="#" class="cert-btn">AI Certification</a>
+      <a href="#" class="cert-btn">Cloud Certificate</a>
+      <a href="#" class="cert-btn">TensorFlow Certificate</a> -->
+
     </div>
   </section>
 
-  <!-- Contact -->
-  <section id="contact" class="contact">
-    <h2>Get in Touch</h2>
-    <p>📧 barathinfo28@gmail.com</p>
-    <p>🌐 <a href="https://www.linkedin.com/in/gowtham289/" target="_blank">linkedin.com/in/gowtham289</a></p>
-  </section>
+  <section id="gallery" class="photo-gallery">
+  <h2>Moments & Work</h2>
 
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 Gowtham Barath. All rights reserved.</p>
-  </footer>
+  <div class="gallery-grid">
+    <img src="photo1.jpg" alt="photo">
+    <img src="photo2.jpg" alt="photo">
+    <img src="photo3.jpg" alt="photo">
+    <img src="photo4.jpg" alt="photo">
+
+    <img src="photo5.jpg" alt="photo">
+    <img src="photo6.jpg" alt="photo">
+    <img src="photo7.jpg" alt="photo">
+    <img src="photo8.jpg" alt="photo">
+  </div>
+</section>
+
+<section id="contact" class="contact-center">
+  <h2>Contact</h2>
+
+  <div class="contact-row">
+    <span class="contact-label">Phone</span>
+    <span class="contact-value">+91 7418802809</span>
+  </div>
+
+  <div class="contact-row">
+    <span class="contact-label">Email</span>
+    <span class="contact-value">
+      <a href="mailto:barathinfo28@gmail.com" style="color:white; text-decoration:none;">barathinfo28@gmail.com</a>
+    </span>
+  </div>
+
+  <div class="contact-row">
+    <span class="contact-label">LinkedIn</span>
+    <span class="contact-value">
+      <a href="https://www.linkedin.com/in/gowtham289/" target="_blank" style="color:white; text-decoration:none;">https://www.linkedin.com/in/gowthambharathn</a>
+    </span>
+  </div>
+
+  <div class="contact-row">
+    <span class="contact-label">GitHub</span>
+    <span class="contact-value">
+      <a href="https://github.com/gowthambharathn" target="_blank" style="color:white; text-decoration:none;">https://github.com/gowthambharathn</a>
+    </span>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Gowtham Bharath. All rights reserved.</p>
+</footer>
 
 </body>
 </html>
-
-

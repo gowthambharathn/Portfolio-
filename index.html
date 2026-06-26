@@ -30,20 +30,17 @@
       overflow-x: hidden;
     }
 
-    /* --- THE "SMALL BOXES" GRID EFFECT (STRENGTHENED) --- */
     .bg-grid {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      /* Visible Blue Grid Lines */
       background-image: 
         linear-gradient(rgba(0, 119, 255, 0.15) 1.5px, transparent 1.5px),
         linear-gradient(90deg, rgba(0, 119, 255, 0.15) 1.5px, transparent 1.5px);
       background-size: 40px 40px;
       z-index: -1;
-      /* Subtle pulse animation for the boxes */
       animation: pulseGrid 8s ease-in-out infinite;
     }
 
@@ -52,7 +49,6 @@
       50% { opacity: 1; }
     }
 
-    /* Vignette to focus center */
     .bg-vignette {
       position: fixed;
       top: 0;
@@ -101,7 +97,6 @@
       text-shadow: 0 0 10px var(--neon-blue);
     }
 
-    /* Hero Section */
     .hero {
       height: 100vh;
       display: flex;
@@ -147,15 +142,15 @@
     }
 
     section {
-      padding: 8rem 8% 4rem;
-      max-width: 1300px;
+      max-width: 1100px;
       margin: auto;
+      padding: 80px 20px;
     }
 
     h2 {
       font-family: 'Montserrat', sans-serif;
       font-size: 1.8rem;
-      margin-bottom: 4rem;
+      margin-bottom: 3rem;
       color: #fff;
       display: flex;
       align-items: center;
@@ -168,6 +163,7 @@
       width: 45px;
       height: 3px;
       background: var(--neon-blue);
+      flex-shrink: 0;
     }
 
     .grid {
@@ -177,19 +173,15 @@
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.04); /* transparent glass */
+      background: rgba(255, 255, 255, 0.04);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-
       padding: 2.5rem;
       border-radius: 14px;
-
       border: 1px solid rgba(255, 255, 255, 0.15);
-
       box-shadow: 
-          0 8px 30px rgba(0, 0, 0, 0.6),
-          inset 0 0 20px rgba(255, 255, 255, 0.05);
-
+        0 8px 30px rgba(0, 0, 0, 0.6),
+        inset 0 0 20px rgba(255, 255, 255, 0.05);
       transition: var(--transition);
       display: flex;
       flex-direction: column;
@@ -197,14 +189,13 @@
 
     .card:hover {
       transform: translateY(-8px);
-      border-color: rgba(0,119,255,0.5);
-      box-shadow: 
-          0 20px 60px rgba(0,119,255,0.25);
+      border-color: rgba(0, 119, 255, 0.5);
+      box-shadow: 0 20px 60px rgba(0, 119, 255, 0.25);
     }
 
     .card h3 {
       font-family: 'Montserrat', sans-serif;
-      font-size: 1.3rem;
+      font-size: 1.1rem;
       margin-bottom: 1rem;
       color: var(--neon-blue-glow);
     }
@@ -215,7 +206,33 @@
       line-height: 1.8;
     }
 
-    /* Skill Tags */
+    /* Project number badge */
+    .project-num {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      color: rgba(0, 210, 255, 0.5);
+      margin-bottom: 0.5rem;
+    }
+
+    /* Project tags */
+    .proj-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 1.2rem;
+    }
+
+    .proj-tag {
+      font-size: 0.65rem;
+      padding: 4px 10px;
+      background: rgba(0, 119, 255, 0.08);
+      border: 1px solid rgba(0, 119, 255, 0.35);
+      border-radius: 4px;
+      color: #aaa;
+      letter-spacing: 0.5px;
+    }
+
     .skill-tags {
       display: flex;
       flex-wrap: wrap;
@@ -233,21 +250,26 @@
       letter-spacing: 1px;
     }
 
-    /* Certificate Redirect Buttons */
-.cert-btn {
-  display: block;
-  padding: 18px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid var(--neon-blue);
-  border-radius: 40px;
-  text-align: center;
-  text-decoration: none;
-  color: white;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.8rem;
-  letter-spacing: 2px;
-  transition: var(--transition);
-}
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+
+    .cert-btn {
+      display: block;
+      padding: 18px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--neon-blue);
+      border-radius: 40px;
+      text-align: center;
+      text-decoration: none;
+      color: white;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      transition: var(--transition);
+    }
 
     .cert-btn:hover {
       background: var(--neon-blue);
@@ -255,13 +277,13 @@
       box-shadow: 0 0 25px var(--neon-blue);
     }
 
-    /* Contact Details Block */
     .contact-center {
       text-align: center;
-      padding: 6rem 0;
+      padding: 4rem 0;
     }
 
     .contact-row { margin-bottom: 3rem; }
+
     .contact-label {
       color: var(--neon-blue-glow);
       font-size: 0.75rem;
@@ -270,6 +292,7 @@
       margin-bottom: 12px;
       display: block;
     }
+
     .contact-value {
       font-size: 1rem;
       font-weight: 300;
@@ -277,27 +300,21 @@
       letter-spacing: 1px;
     }
 
-    .photo-gallery{
-      padding: 60px 1.2%;
+    .photo-gallery {
+      padding: 60px 20px;
       text-align: center;
+      max-width: 1100px;
+      margin: auto;
     }
 
-.gallery-grid {
-  display: grid;
-  /* This ensures images are at least 150px but fill space otherwise */
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
-  gap: 15px;
-  margin-top: 30px;
-}
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      margin-top: 30px;
+    }
 
-/* Ensure images maintain a good aspect ratio on mobile */
-@media (max-width: 600px) {
-  .gallery-grid img {
-    height: 180px; /* Slightly shorter for smaller screens */
-  }
-}
-
-    .gallery-grid img{
+    .gallery-grid img {
       width: 100%;
       height: 220px;
       object-fit: cover;
@@ -312,38 +329,18 @@
       letter-spacing: 4px;
     }
 
-    section{
-  max-width: 1100px;
-  margin: auto;
-  padding: 60px 20px;
-}
-
-section h2{
-  margin-bottom: 30px;
-}
-
-    .cert-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2rem;
-}
-
-@media (max-width: 768px) {
-  .nav-links { display: none; }
-  .hero h1 { font-size: 2.8rem; } /* Slightly smaller hero for mobile */
-  
-  /* Reduced contact size for better fit */
-  .contact-value { 
-    font-size: 0.9rem; 
-    word-break: break-all; /* Prevents long emails from overflowing the screen */
-    display: block;
-    padding: 0 10px;
-  }
-  
-  .contact-label {
-    letter-spacing: 3px; /* Tighter tracking for smaller screens */
-  }
-}
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero h1 { font-size: 2.8rem; }
+      .contact-value {
+        font-size: 0.9rem;
+        word-break: break-all;
+        display: block;
+        padding: 0 10px;
+      }
+      .contact-label { letter-spacing: 3px; }
+      .gallery-grid img { height: 180px; }
+    }
   </style>
 </head>
 <body>
@@ -373,36 +370,35 @@ section h2{
   <section id="summary">
     <h2>CORE SUMMARY</h2>
     <div class="grid">
-      <div class="card" style="grid-column: span 1;">
-<p>
-  Passionate <strong>Android Developer</strong> and <strong>AI Enthusiast</strong> focused on building scalable, high-performance mobile applications. Experienced in developing modern Android apps using <strong>Kotlin</strong>, <strong>Jetpack Compose</strong>, <strong>MVVM</strong>, and <strong>Firebase</strong>, while integrating intelligent features with <strong>TensorFlow Lite</strong>. Currently exploring <strong>Large Language Models (LLMs)</strong>, <strong>Transformer architectures</strong>, and contributing to <strong>open-source projects</strong>. Committed to creating innovative software with clean architecture, exceptional user experiences, and real-world impact at <strong>gowthambharath.xyz</strong>.
-</p>
-
- </div>
-      <div class="card" style="grid-column: span 1;">
+      <div class="card">
+        <p>
+          Passionate <strong>Android Developer</strong> and <strong>AI Enthusiast</strong> focused on building scalable, high-performance mobile applications. Experienced in developing modern Android apps using <strong>Kotlin</strong>, <strong>Jetpack Compose</strong>, <strong>MVVM</strong>, and <strong>Firebase</strong>, while integrating intelligent features with <strong>TensorFlow Lite</strong>. Currently exploring <strong>Large Language Models (LLMs)</strong>, <strong>Transformer architectures</strong>, and contributing to <strong>open-source projects</strong>. Committed to creating innovative software with clean architecture, exceptional user experiences, and real-world impact at <strong>gowthambharath.xyz</strong>.
+        </p>
+      </div>
+      <div class="card">
         <h3>EXPERTISE</h3>
-          <div class="skill-tags">
-            <span class="tag">Kotlin</span>
-            <span class="tag">Java</span>
-            <span class="tag">Jetpack Compose</span>
-            <span class="tag">Android SDK</span>
-            <span class="tag">MVVM</span>
-            <span class="tag">Coroutines</span>
-            <span class="tag">Flow</span>
-            <span class="tag">Material 3</span>
-            <span class="tag">Firebase</span>
-            <span class="tag">SQLite</span>
-            <span class="tag">Room Database</span>
-            <span class="tag">REST APIs</span>
-            <span class="tag">TensorFlow Lite</span>
-            <span class="tag">Python</span>
-            <span class="tag">Git</span>
-            <span class="tag">GitHub</span>
-            <span class="tag">Clean Architecture</span>
-            <span class="tag">UI/UX</span>
-            <span class="tag">JSON</span>
-            <span class="tag">PC Hardware</span>
-          </div>
+        <div class="skill-tags">
+          <span class="tag">Kotlin</span>
+          <span class="tag">Java</span>
+          <span class="tag">Jetpack Compose</span>
+          <span class="tag">Android SDK</span>
+          <span class="tag">MVVM</span>
+          <span class="tag">Coroutines</span>
+          <span class="tag">Flow</span>
+          <span class="tag">Material 3</span>
+          <span class="tag">Firebase</span>
+          <span class="tag">SQLite</span>
+          <span class="tag">Room Database</span>
+          <span class="tag">REST APIs</span>
+          <span class="tag">TensorFlow Lite</span>
+          <span class="tag">Python</span>
+          <span class="tag">Git</span>
+          <span class="tag">GitHub</span>
+          <span class="tag">Clean Architecture</span>
+          <span class="tag">UI/UX</span>
+          <span class="tag">JSON</span>
+          <span class="tag">PC Hardware</span>
+        </div>
       </div>
     </div>
   </section>
@@ -410,116 +406,209 @@ section h2{
   <section id="projects">
     <h2>PROJECTS</h2>
     <div class="grid">
+
       <div class="card">
-        <h3>01. Developer Environment</h3>
-        <p>A productivity platform designed to help junior developers easily build, manage, and complete software projects with structured tools and workflows.</p>
+        <div class="project-num">01 — SKYNET</div>
+        <h3>Production Environment</h3>
+        <p>Designed and developed the Production Environment used across the company to deploy production-ready applications. Built reusable architecture, utilities, and modules that junior developers use as the foundation for developing and maintaining production-grade Android applications.</p>
+        <div class="proj-tags">
+          <span class="proj-tag">Android</span>
+          <span class="proj-tag">Kotlin</span>
+          <span class="proj-tag">Clean Architecture</span>
+          <span class="proj-tag">Internal Tools</span>
+        </div>
       </div>
 
       <div class="card">
-        <h3>02. RK Chit App</h3>
-        <p>Prototype fintech application enabling users to pay chit fund installments digitally to partnered jewellery shops through an online payment system.</p>
+        <div class="project-num">02 — SKYNET</div>
+        <h3>Developer Environment</h3>
+        <p>Built the Developer Environment used internally for feature development, testing, and debugging before merging into production. Streamlined the development workflow and improved collaboration between development and production teams.</p>
+        <div class="proj-tags">
+          <span class="proj-tag">Android</span>
+          <span class="proj-tag">Kotlin</span>
+          <span class="proj-tag">Dev Tooling</span>
+          <span class="proj-tag">Workflow</span>
+        </div>
       </div>
 
       <div class="card">
-        <h3>03. SkynetBee Projects</h3>
-        <p>Contributed to the development of 20+ internal applications including ViewMyMark, Digital Classroom, and other productivity tools.</p>
+        <div class="project-num">03 — SKYNET</div>
+        <h3>Skynet AI</h3>
+        <p>Developed an AI-powered home automation system capable of controlling lights, fans, and other smart devices through voice commands. Focused on voice recognition, command processing, and seamless Android integration.</p>
+        <div class="proj-tags">
+          <span class="proj-tag">AI</span>
+          <span class="proj-tag">Voice Recognition</span>
+          <span class="proj-tag">Home Automation</span>
+          <span class="proj-tag">Android</span>
+        </div>
       </div>
 
       <div class="card">
-        <h3>04. Play Store Applications</h3>
-        <p>Developed and published Android apps including Snake Game and TrackIt, a habit tracking application currently under Play Store review.</p>
+        <div class="project-num">04 — FINTECH</div>
+        <h3>RoyalAure</h3>
+        <p>Developed a jewelry chit management application that allows users to manage chit plans, track payments, and securely pay installments online through integrated payment services.</p>
+        <div class="proj-tags">
+          <span class="proj-tag">Fintech</span>
+          <span class="proj-tag">Android</span>
+          <span class="proj-tag">Payment Integration</span>
+          <span class="proj-tag">Kotlin</span>
+        </div>
       </div>
 
       <div class="card">
-        <h3>05. Skynet Android Production</h3>
-        <p>Active contributor to Skynet’s Android production ecosystem, participating in real-world application development and feature integration.</p>
+        <div class="project-num">05 — AI RESEARCH</div>
+        <h3>Infinity</h3>
+        <p>Built a chatbot completely from scratch without using any pre-trained or downloaded AI models. Implemented custom text preprocessing, response generation, and ML concepts to understand the fundamentals of conversational AI at its core.</p>
+        <div class="proj-tags">
+          <span class="proj-tag">Machine Learning</span>
+          <span class="proj-tag">NLP</span>
+          <span class="proj-tag">Python</span>
+          <span class="proj-tag">From Scratch</span>
+        </div>
       </div>
 
       <div class="card">
-        <h3>06. Custom AI Workstation</h3>
-        <p>Led the team in building a high-performance development workstation powered by an RTX 5070 GPU for AI model training and experimentation.</p>
+        <div class="project-num">06 — ALGO TRADING</div>
+        <h3>Delta</h3>
+        <p>Designed and developed a cryptocurrency trading bot for learning algorithmic trading. Implemented technical indicators, trading strategies, risk management logic, and modular architecture built for future expansion.</p>
+        <div class="proj-tags">
+          <span class="proj-tag">Python</span>
+          <span class="proj-tag">Crypto</span>
+          <span class="proj-tag">Algo Trading</span>
+          <span class="proj-tag">Risk Management</span>
+        </div>
       </div>
+
+      <div class="card">
+        <div class="project-num">07 — PLAY STORE</div>
+        <h3>TrackIt</h3>
+        <p>Published on Google Play Store — a productivity-focused habit tracker developed using Jetpack Compose and MVVM architecture. Helped strengthen expertise in modern Android development practices and the full Play Store publishing pipeline.</p>
+        <div class="proj-tags">
+          <span class="proj-tag">Jetpack Compose</span>
+          <span class="proj-tag">MVVM</span>
+          <span class="proj-tag">Play Store</span>
+          <span class="proj-tag">Kotlin</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="project-num">08 — PLAY STORE</div>
+        <h3>SkySnake</h3>
+        <p>Built a classic Snake Game from scratch while learning arrays and loops, without following online tutorials. Later refined the codebase and published it on the Google Play Store as a complete, standalone mobile game.</p>
+        <div class="proj-tags">
+          <span class="proj-tag">Android</span>
+          <span class="proj-tag">Game Dev</span>
+          <span class="proj-tag">Play Store</span>
+          <span class="proj-tag">Kotlin</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="project-num">09 — HACKATHON</div>
+        <h3>SkyTrack</h3>
+        <p>Developed a fully functional college bus tracking application for a hackathon, providing real-time bus location tracking and route management for students and staff.</p>
+        <div class="proj-tags">
+          <span class="proj-tag">Real-Time Tracking</span>
+          <span class="proj-tag">Android</span>
+          <span class="proj-tag">Maps API</span>
+          <span class="proj-tag">Hackathon</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="project-num">10 — HARDWARE</div>
+        <h3>Custom PC Build</h3>
+        <p>Designed and assembled a high-performance workstation powered by an AMD Ryzen 5 9600X processor and NVIDIA GeForce RTX 5070 GPU, optimized for Android development, AI experimentation, and high-performance computing.</p>
+        <div class="proj-tags">
+          <span class="proj-tag">RTX 5070</span>
+          <span class="proj-tag">Ryzen 5 9600X</span>
+          <span class="proj-tag">PC Hardware</span>
+          <span class="proj-tag">AI Workstation</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="project-num">11 — SKYNET</div>
+        <h3>20+ Internal Projects</h3>
+        <p>Contributed to more than 20 internal Skynet applications and utilities, including ViewMyMark, Digital Classroom, and several production tools — implementing new features, fixing bugs, improving architecture, and enhancing overall application performance.</p>
+        <div class="proj-tags">
+          <span class="proj-tag">Android</span>
+          <span class="proj-tag">Kotlin</span>
+          <span class="proj-tag">Bug Fixes</span>
+          <span class="proj-tag">Feature Dev</span>
+        </div>
+      </div>
+
     </div>
   </section>
 
   <section id="certificates">
     <h2>VALIDATED CREDENTIALS</h2>
-
     <div class="cert-grid">
-
       <a href="photos/certificates/skynetcert.jpeg" target="_blank" class="cert-btn">Skynet Android Internship</a>
       <a href="photos/certificates/bestdeveloper.jpeg" target="_blank" class="cert-btn">Best Developer Award</a>
       <a href="photos/certificates/fundamentalofweb.jpg" target="_blank" class="cert-btn">Web Development Fundamentals</a>
-
-      <!-- <a href="#" class="cert-btn">AI Certification</a>
-      <a href="#" class="cert-btn">Cloud Certificate</a>
-      <a href="#" class="cert-btn">TensorFlow Certificate</a> -->
-
     </div>
   </section>
 
   <section id="gallery" class="photo-gallery">
-  <h2>Moments & Work</h2>
+    <h2>Moments & Work</h2>
+    <div class="gallery-grid">
+      <img src="photos/skynet/aipcday.jpeg" alt="photo">
+      <img src="photos/skynet/developerexam.jpeg" alt="photo">
+      <img src="photos/skynet/dothraki_2.jpeg" alt="photo">
+      <img src="photos/skynet/calculator1.JPG" alt="photo">
+      <img src="photos/skynet/developerexam2.jpeg" alt="photo">
+      <img src="photos/skynet/pcbuilding.jpeg" alt="photo">
+      <img src="photos/skynet/presentation.jpeg" alt="photo">
+      <img src="photos/skynet/radar1.jpeg" alt="photo">
+      <img src="photos/skynet/salaryevent.JPG" alt="photo">
+      <img src="photos/skynet/calculator2.JPG" alt="photo">
+      <img src="photos/skynet/salaryevent2.JPG" alt="photo">
+      <img src="photos/skynet/robohackthon.JPG" alt="photo">
+    </div>
+  </section>
 
-  <div class="gallery-grid">
-    <img src="photos/skynet/aipcday.jpeg" alt="photo">
-    <img src="photos/skynet/developerexam.jpeg" alt="photo">
-    <img src="photos/skynet/dothraki_2.jpeg" alt="photo">
-    <img src="photos/skynet/calculator1.JPG" alt="photo">
-
-    <img src="photos/skynet/developerexam2.jpeg" alt="photo">
-    <img src="photos/skynet/pcbuilding.jpeg" alt="photo">
-    <img src="photos/skynet/presentation.jpeg" alt="photo">
-    <img src="photos/skynet/radar1.jpeg" alt="photo">
-
-    <img src="photos/skynet/salaryevent.JPG" alt="photo">
-    <img src="photos/skynet/calculator2.JPG" alt="photo">
-    <img src="photos/skynet/salaryevent2.JPG" alt="photo">
-    <img src="photos/skynet/robohackthon.JPG" alt="photo">
-
-  </div>
-</section>
-
-<section id="contact" class="contact-center">
-  <h2>Contact</h2>
-
-  <div class="contact-row">
-    <span class="contact-label">Phone</span>
-    <span class="contact-value">+91 7418802809</span>
-  </div>
-
-  <div class="contact-row">
-    <span class="contact-label">Email</span>
-    <span class="contact-value">
-      <a href="mailto:barathinfo28@gmail.com" style="color:white; text-decoration:none;">barathinfo28@gmail.com</a>
-    </span>
-  </div>
-
-  <div class="contact-row">
-    <span class="contact-label">LinkedIn</span>
-    <span class="contact-value">
-      <a href="https://www.linkedin.com/in/gowtham289/" target="_blank" style="color:white; text-decoration:none;">linkedin.com/in/gowthambharathn</a>
-    </span>
-  </div>
-
-  <div class="contact-row">
-    <span class="contact-label">GitHub</span>
-    <span class="contact-value">
-      <a href="https://github.com/gowthambharathn" target="_blank" style="color:white; text-decoration:none;">github.com/gowthambharathn</a>
-    </span>
-  </div>
+  <section id="contact" class="contact-center">
+    <h2>Contact</h2>
 
     <div class="contact-row">
-    <span class="contact-label">Instagram</span>
-    <span class="contact-value">
-      <a href="https://www.instagram.com/gowthambharath.n/" target="_blank" style="color:white; text-decoration:none;">gowthambharath.n</a>
-    </span>
-  </div>
-</section>
+      <span class="contact-label">Phone</span>
+      <span class="contact-value">+91 7418802809</span>
+    </div>
 
-<footer>
-  <p>© 2026 Gowtham Bharath. All rights reserved.</p>
-</footer>
+    <div class="contact-row">
+      <span class="contact-label">Email</span>
+      <span class="contact-value">
+        <a href="mailto:barathinfo28@gmail.com" style="color:white; text-decoration:none;">barathinfo28@gmail.com</a>
+      </span>
+    </div>
+
+    <div class="contact-row">
+      <span class="contact-label">LinkedIn</span>
+      <span class="contact-value">
+        <a href="https://www.linkedin.com/in/gowtham289/" target="_blank" style="color:white; text-decoration:none;">linkedin.com/in/gowthambharathn</a>
+      </span>
+    </div>
+
+    <div class="contact-row">
+      <span class="contact-label">GitHub</span>
+      <span class="contact-value">
+        <a href="https://github.com/gowthambharathn" target="_blank" style="color:white; text-decoration:none;">github.com/gowthambharathn</a>
+      </span>
+    </div>
+
+    <div class="contact-row">
+      <span class="contact-label">Instagram</span>
+      <span class="contact-value">
+        <a href="https://www.instagram.com/gowthambharath.n/" target="_blank" style="color:white; text-decoration:none;">gowthambharath.n</a>
+      </span>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Gowtham Bharath. All rights reserved.</p>
+  </footer>
 
 </body>
 </html>

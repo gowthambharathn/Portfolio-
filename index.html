@@ -4,7 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Gowtham Bharath | Android & AI Architect</title>
+
+  <!-- Preconnect speeds up the very first font request -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --bg-black: #000000;
@@ -13,6 +18,7 @@
       --neon-blue-glow: #00d2ff;
       --blue-gradient: linear-gradient(135deg, #0077ff 0%, #00d2ff 100%);
       --text-gray: #a0a0a0;
+      --border-soft: rgba(255, 255, 255, 0.12);
       --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     }
 
@@ -21,7 +27,21 @@
       padding: 0;
       box-sizing: border-box;
       font-family: 'Inter', sans-serif;
+    }
+
+    html {
       scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
     }
 
     body {
@@ -36,11 +56,11 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-image: 
+      background-image:
         linear-gradient(rgba(0, 119, 255, 0.15) 1.5px, transparent 1.5px),
         linear-gradient(90deg, rgba(0, 119, 255, 0.15) 1.5px, transparent 1.5px);
       background-size: 40px 40px;
-      z-index: -1;
+      z-index: -2;
       animation: pulseGrid 8s ease-in-out infinite;
     }
 
@@ -60,18 +80,33 @@
       z-index: -1;
     }
 
+    /* Scroll progress indicator */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 2px;
+      width: 0%;
+      background: var(--blue-gradient);
+      box-shadow: 0 0 10px var(--neon-blue-glow);
+      z-index: 1100;
+      transition: width 0.1s linear;
+    }
+
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1.2rem 8%;
-      background: rgba(0, 0, 0, 0.95);
+      background: rgba(0, 0, 0, 0.85);
       backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       position: fixed;
       width: 100%;
       top: 0;
       z-index: 1000;
       border-bottom: 1px solid rgba(0, 119, 255, 0.2);
+      transition: var(--transition);
     }
 
     .logo {
@@ -80,9 +115,16 @@
       font-size: 1rem;
       letter-spacing: 3px;
       color: var(--neon-blue-glow);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
     }
 
     .nav-links a {
+      position: relative;
       color: var(--text-gray);
       margin-left: 2rem;
       font-size: 0.75rem;
@@ -90,12 +132,53 @@
       letter-spacing: 1px;
       text-decoration: none;
       transition: var(--transition);
+      padding-bottom: 4px;
     }
 
-    .nav-links a:hover {
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0%;
+      height: 1px;
+      background: var(--neon-blue-glow);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
       color: var(--neon-blue-glow);
       text-shadow: 0 0 10px var(--neon-blue);
     }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      z-index: 1001;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--neon-blue-glow);
+      transition: var(--transition);
+    }
+
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
     .hero {
       height: 100vh;
@@ -105,6 +188,7 @@
       align-items: center;
       text-align: center;
       padding: 0 5%;
+      position: relative;
     }
 
     .hero-img {
@@ -115,6 +199,22 @@
       padding: 6px;
       box-shadow: 0 0 50px rgba(0, 119, 255, 0.4);
       margin-bottom: 2.5rem;
+      background: var(--card-black);
+      animation: floatY 6s ease-in-out infinite;
+    }
+
+    @keyframes floatY {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .hero-img-wrap {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(135deg, #050505, #0d1b2a);
     }
 
     .hero-img img {
@@ -122,6 +222,7 @@
       height: 100%;
       border-radius: 50%;
       object-fit: cover;
+      display: block;
     }
 
     .hero h1 {
@@ -131,6 +232,7 @@
       background: var(--blue-gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      letter-spacing: 1px;
     }
 
     .hero p {
@@ -139,6 +241,37 @@
       letter-spacing: 6px;
       text-transform: uppercase;
       font-weight: 300;
+      margin-top: 0.75rem;
+    }
+
+    .scroll-cue {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 22px;
+      height: 36px;
+      border: 1.5px solid rgba(0, 210, 255, 0.5);
+      border-radius: 20px;
+    }
+
+    .scroll-cue::before {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      width: 3px;
+      height: 8px;
+      background: var(--neon-blue-glow);
+      border-radius: 2px;
+      transform: translateX(-50%);
+      animation: scrollDot 1.8s ease-in-out infinite;
+    }
+
+    @keyframes scrollDot {
+      0% { opacity: 1; top: 6px; }
+      70% { opacity: 0; top: 18px; }
+      100% { opacity: 0; top: 6px; }
     }
 
     section {
@@ -172,14 +305,26 @@
       gap: 2rem;
     }
 
+    /* Scroll-reveal: elements fade + rise into place once, cheap & subtle */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     .card {
       background: rgba(255, 255, 255, 0.04);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       padding: 2.5rem;
       border-radius: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      box-shadow: 
+      border: 1px solid var(--border-soft);
+      box-shadow:
         0 8px 30px rgba(0, 0, 0, 0.6),
         inset 0 0 20px rgba(255, 255, 255, 0.05);
       transition: var(--transition);
@@ -206,7 +351,6 @@
       line-height: 1.8;
     }
 
-    /* Project number badge */
     .project-num {
       font-family: 'Montserrat', sans-serif;
       font-size: 0.65rem;
@@ -215,7 +359,6 @@
       margin-bottom: 0.5rem;
     }
 
-    /* Project tags */
     .proj-tags {
       display: flex;
       flex-wrap: wrap;
@@ -248,6 +391,12 @@
       border-radius: 4px;
       color: #fff;
       letter-spacing: 1px;
+      transition: var(--transition);
+    }
+
+    .tag:hover {
+      background: rgba(0, 119, 255, 0.25);
+      border-color: var(--neon-blue-glow);
     }
 
     .cert-grid {
@@ -271,7 +420,8 @@
       transition: var(--transition);
     }
 
-    .cert-btn:hover {
+    .cert-btn:hover,
+    .cert-btn:focus-visible {
       background: var(--neon-blue);
       color: #000;
       box-shadow: 0 0 25px var(--neon-blue);
@@ -300,6 +450,18 @@
       letter-spacing: 1px;
     }
 
+    .contact-value a {
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .contact-value a:hover,
+    .contact-value a:focus-visible {
+      color: var(--neon-blue-glow) !important;
+      text-shadow: 0 0 12px rgba(0, 210, 255, 0.6);
+    }
+
+    /* ---------- Photo gallery: skeleton + lazy fade-in ---------- */
     .photo-gallery {
       padding: 60px 20px;
       text-align: center;
@@ -309,16 +471,117 @@
 
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 15px;
       margin-top: 30px;
     }
 
-    .gallery-grid img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
+    .gallery-item {
+      position: relative;
       border-radius: 12px;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      background: linear-gradient(100deg, #0a0a0a 20%, #101a24 40%, #0a0a0a 60%);
+      background-size: 200% 100%;
+      animation: shimmer 1.6s infinite linear;
+      border: 1px solid var(--border-soft);
+      transition: var(--transition);
+    }
+
+    .gallery-item:hover {
+      border-color: rgba(0, 119, 255, 0.5);
+      box-shadow: 0 12px 40px rgba(0, 119, 255, 0.2);
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* once the browser has loaded the image, JS adds .loaded and the shimmer stops */
+    .gallery-item.loaded {
+      animation: none;
+      background: none;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      opacity: 0;
+      transform: scale(1.04);
+      transition: opacity 0.5s ease, transform 0.6s ease;
+    }
+
+    .gallery-item img.loaded {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .gallery-item figcaption {
+      position: absolute;
+      inset: auto 0 0 0;
+      padding: 14px 16px 12px;
+      background: linear-gradient(to top, rgba(0,0,0,0.92) 10%, rgba(0,0,0,0.4) 70%, transparent 100%);
+      font-size: 0.72rem;
+      line-height: 1.5;
+      color: var(--text-gray);
+      text-align: left;
+      transform: translateY(6px);
+      opacity: 0.92;
+    }
+
+    .gallery-item figcaption strong {
+      display: block;
+      color: var(--neon-blue-glow);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 1px;
+      margin-bottom: 3px;
+      text-transform: uppercase;
+    }
+
+    /* Back to top */
+    .back-to-top {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(10, 10, 10, 0.85);
+      border: 1px solid var(--neon-blue);
+      color: var(--neon-blue-glow);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px);
+      transition: var(--transition);
+      z-index: 900;
+      backdrop-filter: blur(6px);
+    }
+
+    .back-to-top.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .back-to-top:hover,
+    .back-to-top:focus-visible {
+      background: var(--neon-blue);
+      color: #000;
+      box-shadow: 0 0 20px var(--neon-blue);
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--neon-blue-glow);
+      outline-offset: 3px;
     }
 
     footer {
@@ -330,16 +593,41 @@
     }
 
     @media (max-width: 768px) {
-      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: min(72vw, 280px);
+        background: rgba(0, 0, 0, 0.97);
+        border-left: 1px solid rgba(0, 119, 255, 0.25);
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 0 2.5rem;
+        transform: translateX(100%);
+        transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      }
+
+      .nav-links.open { transform: translateX(0); }
+
+      .nav-links a {
+        margin: 1rem 0;
+        font-size: 0.95rem;
+      }
+
       .hero h1 { font-size: 2.8rem; }
+
       .contact-value {
         font-size: 0.9rem;
         word-break: break-all;
         display: block;
         padding: 0 10px;
       }
+
       .contact-label { letter-spacing: 3px; }
-      .gallery-grid img { height: 180px; }
     }
   </style>
 </head>
@@ -347,35 +635,43 @@
 
   <div class="bg-grid"></div>
   <div class="bg-vignette"></div>
+  <div class="scroll-progress" id="scrollProgress"></div>
 
   <header>
-    <div class="logo">GOWTHAMBHARATH.XYZ</div>
-    <nav class="nav-links">
+    <a href="#home" class="logo">GOWTHAMBHARATH.XYZ</a>
+    <nav class="nav-links" id="navLinks">
       <a href="#home">Home</a>
       <a href="#summary">Bio</a>
       <a href="#projects">Projects</a>
       <a href="#certificates">Certificates</a>
       <a href="#contact">Contact</a>
     </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </header>
 
   <section class="hero" id="home">
     <div class="hero-img">
-      <img src="profile.jpg" alt="Gowtham Bharath N">
+      <div class="hero-img-wrap">
+        <!-- Hero photo is the LCP element: load it eagerly and at high priority -->
+        <img src="profile.jpg" alt="Gowtham Bharath N" loading="eager" fetchpriority="high" decoding="async" width="220" height="220">
+      </div>
     </div>
     <h1>GOWTHAM BHARATH</h1>
     <p>AI // ANDROID DEVELOPER</p>
+    <div class="scroll-cue" aria-hidden="true"></div>
   </section>
 
   <section id="summary">
     <h2>CORE SUMMARY</h2>
     <div class="grid">
-      <div class="card">
+      <div class="card reveal">
         <p>
           Passionate <strong>Android Developer</strong> and <strong>AI Enthusiast</strong> focused on building scalable, high-performance mobile applications. Experienced in developing modern Android apps using <strong>Kotlin</strong>, <strong>Jetpack Compose</strong>, <strong>MVVM</strong>, and <strong>Firebase</strong>, while integrating intelligent features with <strong>TensorFlow Lite</strong>. Currently exploring <strong>Large Language Models (LLMs)</strong>, <strong>Transformer architectures</strong>, and contributing to <strong>open-source projects</strong>. Committed to creating innovative software with clean architecture, exceptional user experiences, and real-world impact at <strong>gowthambharath.xyz</strong>.
         </p>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <h3>EXPERTISE</h3>
         <div class="skill-tags">
           <span class="tag">Kotlin</span>
@@ -407,7 +703,7 @@
     <h2>PROJECTS</h2>
     <div class="grid">
 
-      <div class="card">
+      <div class="card reveal">
         <div class="project-num">01 — SKYNET</div>
         <h3>Production Environment</h3>
         <p>Designed and developed the Production Environment used across the company to deploy production-ready applications. Built reusable architecture, utilities, and modules that junior developers use as the foundation for developing and maintaining production-grade Android applications.</p>
@@ -419,7 +715,7 @@
         </div>
       </div>
 
-      <div class="card">
+      <div class="card reveal">
         <div class="project-num">02 — SKYNET</div>
         <h3>Developer Environment</h3>
         <p>Built the Developer Environment used internally for feature development, testing, and debugging before merging into production. Streamlined the development workflow and improved collaboration between development and production teams.</p>
@@ -431,7 +727,7 @@
         </div>
       </div>
 
-      <div class="card">
+      <div class="card reveal">
         <div class="project-num">03 — SKYNET</div>
         <h3>Skynet AI</h3>
         <p>Developed an AI-powered home automation system capable of controlling lights, fans, and other smart devices through voice commands. Focused on voice recognition, command processing, and seamless Android integration.</p>
@@ -443,7 +739,7 @@
         </div>
       </div>
 
-      <div class="card">
+      <div class="card reveal">
         <div class="project-num">04 — FINTECH</div>
         <h3>RoyalAure</h3>
         <p>Developed a jewelry chit management application that allows users to manage chit plans, track payments, and securely pay installments online through integrated payment services.</p>
@@ -455,7 +751,7 @@
         </div>
       </div>
 
-      <div class="card">
+      <div class="card reveal">
         <div class="project-num">05 — AI RESEARCH</div>
         <h3>Infinity</h3>
         <p>Built a chatbot completely from scratch without using any pre-trained or downloaded AI models. Implemented custom text preprocessing, response generation, and ML concepts to understand the fundamentals of conversational AI at its core.</p>
@@ -467,7 +763,7 @@
         </div>
       </div>
 
-      <div class="card">
+      <div class="card reveal">
         <div class="project-num">06 — ALGO TRADING</div>
         <h3>Delta</h3>
         <p>Designed and developed a cryptocurrency trading bot for learning algorithmic trading. Implemented technical indicators, trading strategies, risk management logic, and modular architecture built for future expansion.</p>
@@ -479,7 +775,7 @@
         </div>
       </div>
 
-      <div class="card">
+      <div class="card reveal">
         <div class="project-num">07 — PLAY STORE</div>
         <h3>TrackIt</h3>
         <p>Published on Google Play Store — a productivity-focused habit tracker developed using Jetpack Compose and MVVM architecture. Helped strengthen expertise in modern Android development practices and the full Play Store publishing pipeline.</p>
@@ -491,7 +787,7 @@
         </div>
       </div>
 
-      <div class="card">
+      <div class="card reveal">
         <div class="project-num">08 — PLAY STORE</div>
         <h3>SkySnake</h3>
         <p>Built a classic Snake Game from scratch while learning arrays and loops, without following online tutorials. Later refined the codebase and published it on the Google Play Store as a complete, standalone mobile game.</p>
@@ -503,7 +799,7 @@
         </div>
       </div>
 
-      <div class="card">
+      <div class="card reveal">
         <div class="project-num">09 — HACKATHON</div>
         <h3>SkyTrack</h3>
         <p>Developed a fully functional college bus tracking application for a hackathon, providing real-time bus location tracking and route management for students and staff.</p>
@@ -515,7 +811,7 @@
         </div>
       </div>
 
-      <div class="card">
+      <div class="card reveal">
         <div class="project-num">10 — HARDWARE</div>
         <h3>Custom PC Build</h3>
         <p>Designed and assembled a high-performance workstation powered by an AMD Ryzen 5 9600X processor and NVIDIA GeForce RTX 5070 GPU, optimized for Android development, AI experimentation, and high-performance computing.</p>
@@ -527,7 +823,7 @@
         </div>
       </div>
 
-      <div class="card">
+      <div class="card reveal">
         <div class="project-num">11 — SKYNET</div>
         <h3>20+ Internal Projects</h3>
         <p>Contributed to more than 20 internal Skynet applications and utilities, including ViewMyMark, Digital Classroom, and several production tools — implementing new features, fixing bugs, improving architecture, and enhancing overall application performance.</p>
@@ -545,147 +841,139 @@
   <section id="certificates">
     <h2>VALIDATED CREDENTIALS</h2>
     <div class="cert-grid">
-      <a href="photos/certificates/skynetcert.jpeg" target="_blank" class="cert-btn">Skynet Android Internship</a>
-      <a href="photos/certificates/bestdeveloper.jpeg" target="_blank" class="cert-btn">Best Developer Award</a>
-      <a href="photos/certificates/fundamentalofweb.jpg" target="_blank" class="cert-btn">Web Development Fundamentals</a>
+      <a href="photos/certificates/skynetcert.jpeg" target="_blank" rel="noopener" class="cert-btn reveal">Skynet Android Internship</a>
+      <a href="photos/certificates/bestdeveloper.jpeg" target="_blank" rel="noopener" class="cert-btn reveal">Best Developer Award</a>
+      <a href="photos/certificates/fundamentalofweb.jpg" target="_blank" rel="noopener" class="cert-btn reveal">Web Development Fundamentals</a>
     </div>
-<section id="gallery" class="photo-gallery">
-  <h2>Moments & Work</h2>
+  </section>
 
-  <div class="gallery-grid">
+  <section id="gallery" class="photo-gallery">
+    <h2>MOMENTS & WORK</h2>
 
-    <figure class="gallery-item">
-      <img src="photos/skynet/aipcday.jpeg" alt="AI PC Day">
-      <figcaption>
-        <strong>AI PC Day</strong><br>
-        Attended the AI PC Day event in Coimbatore, where we explored the latest AI-powered computers, hardware innovations, and emerging technologies.
-      </figcaption>
-    </figure>
+    <div class="gallery-grid">
 
-    <figure class="gallery-item">
-      <img src="photos/skynet/developerexam.jpeg" alt="Developer Exam">
-      <figcaption>
-        <strong>Developer Assessment</strong><br>
-        Participated in the internal developer assessment to evaluate programming and problem-solving skills.
-      </figcaption>
-    </figure>
+      <figure class="gallery-item reveal" data-src="photos/skynet/aipcday.jpeg">
+        <figcaption>
+          <strong>AI PC Day</strong>
+          Attended the AI PC Day event in Coimbatore, exploring the latest AI-powered computers and hardware innovations.
+        </figcaption>
+      </figure>
 
-    <figure class="gallery-item">
-      <img src="photos/skynet/dothraki_2.jpeg" alt="Dothraki Project">
-      <figcaption>
-        <strong>Dothraki Project</strong><br>
-        Working on the Dothraki project during my internship, contributing to development and testing activities.
-      </figcaption>
-    </figure>
+      <figure class="gallery-item reveal" data-src="photos/skynet/developerexam.jpeg">
+        <figcaption>
+          <strong>Developer Assessment</strong>
+          Participated in the internal developer assessment to evaluate programming and problem-solving skills.
+        </figcaption>
+      </figure>
 
-    <figure class="gallery-item">
-      <img src="photos/skynet/calculator1.JPG" alt="Calculator Project">
-      <figcaption>
-        <strong>Calculator Project</strong><br>
-        Developed a calculator application as part of a learning and development exercise.
-      </figcaption>
-    </figure>
+      <figure class="gallery-item reveal" data-src="photos/skynet/dothraki_2.jpeg">
+        <figcaption>
+          <strong>Dothraki Project</strong>
+          Working on the Dothraki project during my internship, contributing to development and testing activities.
+        </figcaption>
+      </figure>
 
-    <figure class="gallery-item">
-      <img src="photos/skynet/developerexam2.jpeg" alt="Developer Exam 2">
-      <figcaption>
-        <strong>Developer Assessment</strong><br>
-        Another stage of the developer evaluation focused on coding and technical knowledge.
-      </figcaption>
-    </figure>
+      <figure class="gallery-item reveal" data-src="photos/skynet/calculator1.JPG">
+        <figcaption>
+          <strong>Calculator Project</strong>
+          Developed a calculator application as part of a learning and development exercise.
+        </figcaption>
+      </figure>
 
-    <figure class="gallery-item">
-      <img src="photos/skynet/pcbuilding.jpeg" alt="PC Building">
-      <figcaption>
-        <strong>PC Building</strong><br>
-        Hands-on experience assembling a desktop computer and understanding hardware components.
-      </figcaption>
-    </figure>
+      <figure class="gallery-item reveal" data-src="photos/skynet/developerexam2.jpeg">
+        <figcaption>
+          <strong>Developer Assessment</strong>
+          Another stage of the developer evaluation focused on coding and technical knowledge.
+        </figcaption>
+      </figure>
 
-    <figure class="gallery-item">
-      <img src="photos/skynet/presentation.jpeg" alt="Presentation">
-      <figcaption>
-        <strong>Technical Presentation</strong><br>
-        Presented project ideas and technical concepts to mentors and fellow developers.
-      </figcaption>
-    </figure>
+      <figure class="gallery-item reveal" data-src="photos/skynet/pcbuilding.jpeg">
+        <figcaption>
+          <strong>PC Building</strong>
+          Hands-on experience assembling a desktop computer and understanding hardware components.
+        </figcaption>
+      </figure>
 
-    <figure class="gallery-item">
-      <img src="photos/skynet/radar1.jpeg" alt="Radar Project">
-      <figcaption>
-        <strong>Radar Project</strong><br>
-        Worked on a radar-related project involving software development and testing.
-      </figcaption>
-    </figure>
+      <figure class="gallery-item reveal" data-src="photos/skynet/presentation.jpeg">
+        <figcaption>
+          <strong>Technical Presentation</strong>
+          Presented project ideas and technical concepts to mentors and fellow developers.
+        </figcaption>
+      </figure>
 
-    <figure class="gallery-item">
-      <img src="photos/skynet/salaryevent.JPG" alt="Salary Event">
-      <figcaption>
-        <strong>Salary Day Celebration</strong><br>
-        A memorable team event celebrating salary day with colleagues at Skynet.
-      </figcaption>
-    </figure>
+      <figure class="gallery-item reveal" data-src="photos/skynet/radar1.jpeg">
+        <figcaption>
+          <strong>Radar Project</strong>
+          Worked on a radar-related project involving software development and testing.
+        </figcaption>
+      </figure>
 
-    <figure class="gallery-item">
-      <img src="photos/skynet/calculator2.JPG" alt="Calculator Project">
-      <figcaption>
-        <strong>Calculator Enhancement</strong><br>
-        Continued improving the calculator application by adding new features and fixing issues.
-      </figcaption>
-    </figure>
+      <figure class="gallery-item reveal" data-src="photos/skynet/salaryevent.JPG">
+        <figcaption>
+          <strong>Salary Day Celebration</strong>
+          A memorable team event celebrating salary day with colleagues at Skynet.
+        </figcaption>
+      </figure>
 
-    <figure class="gallery-item">
-      <img src="photos/skynet/salaryevent2.JPG" alt="Salary Event 2">
-      <figcaption>
-        <strong>Team Celebration</strong><br>
-        Another memorable moment with the team during the salary celebration event.
-      </figcaption>
-    </figure>
+      <figure class="gallery-item reveal" data-src="photos/skynet/calculator2.JPG">
+        <figcaption>
+          <strong>Calculator Enhancement</strong>
+          Continued improving the calculator application by adding new features and fixing issues.
+        </figcaption>
+      </figure>
 
-    <figure class="gallery-item">
-      <img src="photos/skynet/robohackthon.JPG" alt="Robohackathon">
-      <figcaption>
-        <strong>Robohackathon</strong><br>
-        Participated in the Robohackathon, collaborating with teammates to build innovative technical solutions.
-      </figcaption>
-    </figure>
+      <figure class="gallery-item reveal" data-src="photos/skynet/salaryevent2.JPG">
+        <figcaption>
+          <strong>Team Celebration</strong>
+          Another memorable moment with the team during the salary celebration event.
+        </figcaption>
+      </figure>
 
-  </div>
-</section>
+      <figure class="gallery-item reveal" data-src="photos/skynet/robohackthon.JPG">
+        <figcaption>
+          <strong>Robohackathon</strong>
+          Participated in the Robohackathon, collaborating with teammates to build innovative technical solutions.
+        </figcaption>
+      </figure>
+
+    </div>
+  </section>
 
   <section id="contact" class="contact-center">
-    <h2>Contact</h2>
+    <h2>CONTACT</h2>
 
-    <div class="contact-row">
+    <div class="contact-row reveal">
       <span class="contact-label">Phone</span>
-      <span class="contact-value">+91 7418802809</span>
+      <span class="contact-value">
+        <a href="tel:+917418802809" style="color:white; text-decoration:none;">+91 7418802809</a>
+      </span>
     </div>
 
-    <div class="contact-row">
+    <div class="contact-row reveal">
       <span class="contact-label">Email</span>
       <span class="contact-value">
         <a href="mailto:barathinfo28@gmail.com" style="color:white; text-decoration:none;">barathinfo28@gmail.com</a>
       </span>
     </div>
 
-    <div class="contact-row">
+    <div class="contact-row reveal">
       <span class="contact-label">LinkedIn</span>
       <span class="contact-value">
-        <a href="https://www.linkedin.com/in/gowtham289/" target="_blank" style="color:white; text-decoration:none;">linkedin.com/in/gowthambharathn</a>
+        <a href="https://www.linkedin.com/in/gowtham289/" target="_blank" rel="noopener" style="color:white; text-decoration:none;">linkedin.com/in/gowthambharathn</a>
       </span>
     </div>
 
-    <div class="contact-row">
+    <div class="contact-row reveal">
       <span class="contact-label">GitHub</span>
       <span class="contact-value">
-        <a href="https://github.com/gowthambharathn" target="_blank" style="color:white; text-decoration:none;">github.com/gowthambharathn</a>
+        <a href="https://github.com/gowthambharathn" target="_blank" rel="noopener" style="color:white; text-decoration:none;">github.com/gowthambharathn</a>
       </span>
     </div>
 
-    <div class="contact-row">
+    <div class="contact-row reveal">
       <span class="contact-label">Instagram</span>
       <span class="contact-value">
-        <a href="https://www.instagram.com/gowthambharath.n/" target="_blank" style="color:white; text-decoration:none;">gowthambharath.n</a>
+        <a href="https://www.instagram.com/gowthambharath.n/" target="_blank" rel="noopener" style="color:white; text-decoration:none;">gowthambharath.n</a>
       </span>
     </div>
   </section>
@@ -693,6 +981,111 @@
   <footer>
     <p>© 2026 Gowtham Bharath. All rights reserved.</p>
   </footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+  <script>
+    // ---------- Mobile nav toggle ----------
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      navToggle.classList.toggle('open', isOpen);
+      navToggle.setAttribute('aria-expanded', isOpen);
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        navToggle.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // ---------- Scroll progress bar ----------
+    const progressBar = document.getElementById('scrollProgress');
+    const backToTop = document.getElementById('backToTop');
+    function onScroll() {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      progressBar.style.width = pct + '%';
+      backToTop.classList.toggle('show', scrollTop > 500);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ---------- Active nav link highlighting ----------
+    const sections = document.querySelectorAll('section[id], .hero[id]');
+    const navAnchors = document.querySelectorAll('.nav-links a');
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navAnchors.forEach(a => a.classList.remove('active'));
+          const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    sections.forEach(sec => navObserver.observe(sec));
+
+    // ---------- Scroll-reveal animation ----------
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ---------- Fast, lazy-loaded gallery images ----------
+    // Images are only requested once they're near the viewport (imgObserver),
+    // and each figure shows a shimmer skeleton until its photo has actually
+    // finished decoding, then fades in. This keeps the initial page weight
+    // small and avoids a wall of simultaneous image requests slowing things down.
+    const galleryItems = document.querySelectorAll('.gallery-item[data-src]');
+
+    function loadGalleryImage(item) {
+      const src = item.getAttribute('data-src');
+      if (!src || item.dataset.loading === 'true') return;
+      item.dataset.loading = 'true';
+
+      const img = new Image();
+      img.src = src;
+      img.alt = item.querySelector('figcaption strong')?.textContent || 'Gallery photo';
+      img.loading = 'lazy';
+      img.decoding = 'async';
+
+      img.onload = () => {
+        item.prepend(img);
+        // next frame, trigger the fade/scale transition
+        requestAnimationFrame(() => {
+          img.classList.add('loaded');
+          item.classList.add('loaded');
+        });
+      };
+      img.onerror = () => {
+        item.classList.add('loaded');
+        item.style.background = '#111';
+      };
+    }
+
+    const imgObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          loadGalleryImage(entry.target);
+          imgObserver.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '250px 0px' }); // start fetching a bit before it scrolls into view
+
+    galleryItems.forEach(item => imgObserver.observe(item));
+  </script>
 
 </body>
 </html>

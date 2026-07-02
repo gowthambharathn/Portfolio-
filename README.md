@@ -38,20 +38,6 @@ This portfolio serves as my personal website, highlighting my technical skills, 
 
 ---
 
-## 📂 Project Structure
-
-```
-Portfolio/
-│
-├── index.html
-├── style.css
-├── script.js
-├── photos/
-├── assets/
-└── README.md
-```
-
----
 
 ## 🌟 Featured Projects
 

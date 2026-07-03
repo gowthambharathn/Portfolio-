@@ -31,8 +31,8 @@ This portfolio serves as my personal website, highlighting my technical skills, 
 
 ## 🏗️ Technologies Used
 
-- HTML5
-- CSS3
+- HTML
+- CSS
 - JavaScript
 - Responsive Web Design
 
@@ -75,8 +75,7 @@ I'm continuously building projects that solve real-world problems while expandin
 ## 📬 Contact
 
 - GitHub: https://github.com/gowthambharathn
-- LinkedIn: *(Add your LinkedIn profile)*
-- Email: *(Add your email address)*
+- Email: barathinfo28@gmail.com
 
 ---
 

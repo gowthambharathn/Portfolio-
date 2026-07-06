@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Gowtham Bharath | Android & AI Architect</title>
 
-  <!-- Preconnect speeds up the very first font request -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
@@ -80,7 +79,6 @@
       z-index: -1;
     }
 
-    /* Scroll progress indicator */
     .scroll-progress {
       position: fixed;
       top: 0;
@@ -305,7 +303,6 @@
       gap: 2rem;
     }
 
-    /* Scroll-reveal: elements fade + rise into place once, cheap & subtle */
     .reveal {
       opacity: 0;
       transform: translateY(24px);
@@ -460,8 +457,6 @@
       color: var(--neon-blue-glow) !important;
       text-shadow: 0 0 12px rgba(0, 210, 255, 0.6);
     }
-
-    /* ---------- Photo gallery: skeleton + lazy fade-in ---------- */
     .photo-gallery {
       padding: 60px 20px;
       text-align: center;
@@ -498,7 +493,6 @@
       100% { background-position: -200% 0; }
     }
 
-    /* once the browser has loaded the image, JS adds .loaded and the shimmer stops */
     .gallery-item.loaded {
       animation: none;
       background: none;
@@ -542,7 +536,6 @@
       text-transform: uppercase;
     }
 
-    /* Back to top */
     .back-to-top {
       position: fixed;
       right: 24px;
@@ -654,7 +647,6 @@
   <section class="hero" id="home">
     <div class="hero-img">
       <div class="hero-img-wrap">
-        <!-- Hero photo is the LCP element: load it eagerly and at high priority -->
         <img src="profile.jpg" alt="Gowtham Bharath N" loading="eager" fetchpriority="high" decoding="async" width="220" height="220">
       </div>
     </div>

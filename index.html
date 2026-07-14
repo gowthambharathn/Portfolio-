@@ -1062,8 +1062,9 @@
         });
       };
       img.onerror = () => {
+        console.error("Failed to load image:", src);
         item.classList.add('loaded');
-        item.style.background = '#111';
+        item.style.background = "#111";
       };
     }
 

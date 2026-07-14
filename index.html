@@ -1048,11 +1048,27 @@
       item.dataset.loading = 'true';
 
       const img = new Image();
-      console.log("Loading:"+ src);
-      img.src = src;
+      
       img.alt = item.querySelector('figcaption strong')?.textContent || 'Gallery photo';
       img.loading = 'lazy';
       img.decoding = 'async';
+      
+      img.onload = () => {
+          console.log("Loaded:", src);
+          item.prepend(img);
+      
+          requestAnimationFrame(() => {
+              img.classList.add("loaded");
+              item.classList.add("loaded");
+          });
+      };
+      
+      img.onerror = () => {
+          console.error("Failed:", src);
+      };
+      
+      console.log("Loading:", src);
+      img.src = src;
 
       img.onload = () => {
         item.prepend(img);

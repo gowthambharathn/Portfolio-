@@ -1048,6 +1048,7 @@
       item.dataset.loading = 'true';
 
       const img = new Image();
+      console.log("Loading:", src);
       img.src = src;
       img.alt = item.querySelector('figcaption strong')?.textContent || 'Gallery photo';
       img.loading = 'lazy';

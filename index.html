@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Gowtham Bharath | Android & AI Architect</title>
 
+  <!-- Preload the hero photo FIRST so the browser starts fetching it
+       before it even parses the fonts/CSS below. This is the single
+       biggest fix for the slow profile photo. -->
+  <link rel="preload" as="image" href="profile.jpg" fetchpriority="high">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
@@ -536,6 +541,23 @@
       text-transform: uppercase;
     }
 
+    /* Visible failure state instead of an infinite spinning shimmer */
+    .gallery-item.load-error {
+      animation: none;
+      background: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gallery-item.load-error::before {
+      content: "Image unavailable";
+      color: #555;
+      font-size: 0.7rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
     .back-to-top {
       position: fixed;
       right: 24px;
@@ -865,7 +887,7 @@
         </figcaption>
       </figure>
 
-      <figure class="gallery-item reveal" data-src="photos/skynet/calculator1.JPG">
+      <figure class="gallery-item reveal" data-src="photos/skynet/calculator1.jpg">
         <figcaption>
           <strong>Calculator Project</strong>
           Developed a calculator application as part of a learning and development exercise.
@@ -900,28 +922,28 @@
         </figcaption>
       </figure>
 
-      <figure class="gallery-item reveal" data-src="photos/skynet/salaryevent.JPG">
+      <figure class="gallery-item reveal" data-src="photos/skynet/salaryevent.jpg">
         <figcaption>
           <strong>Salary Day Celebration</strong>
           A memorable team event celebrating salary day with colleagues at Skynet.
         </figcaption>
       </figure>
 
-      <figure class="gallery-item reveal" data-src="photos/skynet/calculator2.JPG">
+      <figure class="gallery-item reveal" data-src="photos/skynet/calculator2.jpg">
         <figcaption>
           <strong>Calculator Enhancement</strong>
           Continued improving the calculator application by adding new features and fixing issues.
         </figcaption>
       </figure>
 
-      <figure class="gallery-item reveal" data-src="photos/skynet/salaryevent2.JPG">
+      <figure class="gallery-item reveal" data-src="photos/skynet/salaryevent2.jpg">
         <figcaption>
           <strong>Team Celebration</strong>
           Another memorable moment with the team during the salary celebration event.
         </figcaption>
       </figure>
 
-      <figure class="gallery-item reveal" data-src="photos/skynet/robohackthon.JPG">
+      <figure class="gallery-item reveal" data-src="photos/skynet/robohackthon.jpg">
         <figcaption>
           <strong>Robohackathon</strong>
           Participated in the Robohackathon, collaborating with teammates to build innovative technical solutions.
@@ -1035,11 +1057,12 @@
     }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    // ---------- Fast, lazy-loaded gallery images ----------
-    // Images are only requested once they're near the viewport (imgObserver),
-    // and each figure shows a shimmer skeleton until its photo has actually
-    // finished decoding, then fades in. This keeps the initial page weight
-    // small and avoids a wall of simultaneous image requests slowing things down.
+    // ---------- Lazy-loaded gallery images ----------
+    // Images are only requested once they're near the viewport, each figure
+    // shows a shimmer skeleton until its photo has finished loading, then
+    // fades in. If a load genuinely fails (wrong path / case mismatch /
+    // missing file) the figure now shows a visible "Image unavailable"
+    // state instead of shimmering forever with no explanation.
     const galleryItems = document.querySelectorAll('.gallery-item[data-src]');
 
     function loadGalleryImage(item) {
@@ -1048,41 +1071,23 @@
       item.dataset.loading = 'true';
 
       const img = new Image();
-      
       img.alt = item.querySelector('figcaption strong')?.textContent || 'Gallery photo';
-      img.loading = 'lazy';
       img.decoding = 'async';
-      
-      img.onload = () => {
-          console.log("Loaded:", src);
-          item.prepend(img);
-      
-          requestAnimationFrame(() => {
-              img.classList.add("loaded");
-              item.classList.add("loaded");
-          });
-      };
-      
-      img.onerror = () => {
-          console.error("Failed:", src);
-      };
-      
-      console.log("Loading:", src);
-      img.src = src;
 
       img.onload = () => {
         item.prepend(img);
-        // next frame, trigger the fade/scale transition
         requestAnimationFrame(() => {
           img.classList.add('loaded');
           item.classList.add('loaded');
         });
       };
+
       img.onerror = () => {
-        console.error("Failed to load image:", src);
-        item.classList.add('loaded');
-        item.style.background = "#111";
+        console.error('Failed to load image:', src);
+        item.classList.add('load-error');
       };
+
+      img.src = src;
     }
 
     const imgObserver = new IntersectionObserver((entries) => {

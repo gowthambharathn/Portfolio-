@@ -590,90 +590,101 @@ footer {
   letter-spacing: 4px;
 }
 
-/* Updated Project Images Styling */
+/* =========================================================
+   REFINED PROJECT IMAGES & ACTION BUTTONS
+   ========================================================= */
+
+/* Project Screenshot Containers */
 .project-images {
   display: flex;
-  gap: 10px;
-  margin: 14px 0 16px 0;
+  gap: 12px;
+  margin: 1.2rem 0;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .project-images img {
   width: 50%;
-  height: 130px;
+  height: 140px;
   object-fit: cover;
-  border-radius: 8px;
-  border: 1px solid var(--border-soft);
-  transition: transform 0.3s ease, border-color 0.3s ease;
+  object-position: top center;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.4);
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+              border-color 0.4s ease, 
+              box-shadow 0.4s ease;
 }
-
 
 .project-images img:hover {
-  transform: scale(1.03);
-  border-color: var(--neon-blue-glow);
+  transform: translateY(-2px) scale(1.02);
+  border-color: rgba(0, 210, 255, 0.6);
+  box-shadow: 0 6px 20px rgba(0, 119, 255, 0.25);
 }
 
-/* Updated Card Layout Fix (Pins bottom elements uniformly) */
-.card {
-  background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  padding: 2.2rem;
-  border-radius: 14px;
-  border: 1px solid var(--border-soft);
-  box-shadow:
-    0 8px 30px rgba(0, 0, 0, 0.6),
-    inset 0 0 20px rgba(255, 255, 255, 0.05);
-  transition: var(--transition);
-  display: flex;
-  flex-direction: column;
-}
-
-/* Pushes tags & links to the bottom so all cards align nicely */
-.proj-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: auto; /* <--- Pushes tags and links to card bottom */
-  padding-top: 1.2rem;
-}
-
+/* Project Action Links / Buttons */
 .project-links {
   display: flex;
   gap: 10px;
-  margin-top: 14px;
+  margin-top: 1.2rem;
   flex-wrap: wrap;
 }
 
 .proj-link {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  padding: 8px 14px;
-  border-radius: 6px;
-  font-size: 0.8rem;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.5px;
   text-decoration: none;
+  text-transform: uppercase;
   transition: var(--transition);
-  border: 1px solid transparent;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
+/* GitHub Link Styling */
 .proj-link.github {
-  background-color: #161b22;
-  color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+  color: #e6edf3;
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-.proj-link.playstore {
-  background-color: #01875f;
-  color: #ffffff;
-}
-
-.proj-link:hover,
-.proj-link:focus-visible {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(0, 119, 255, 0.3);
+.proj-link.github:hover,
+.proj-link.github:focus-visible {
+  background: rgba(255, 255, 255, 0.12);
   border-color: var(--neon-blue-glow);
+  color: #ffffff;
+  box-shadow: 0 0 15px rgba(0, 210, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Play Store Link Styling */
+.proj-link.playstore {
+  background: rgba(0, 210, 255, 0.08);
+  color: var(--neon-blue-glow);
+  border: 1px solid rgba(0, 210, 255, 0.35);
+}
+
+.proj-link.playstore:hover,
+.proj-link.playstore:focus-visible {
+  background: var(--neon-blue);
+  color: #000000;
+  font-weight: 700;
+  border-color: var(--neon-blue-glow);
+  box-shadow: 0 0 20px rgba(0, 210, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+/* SVG Icon alignment inside buttons */
+.proj-link svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+  flex-shrink: 0;
 }
 @media (max-width: 768px) {
   .nav-toggle { display: flex; }

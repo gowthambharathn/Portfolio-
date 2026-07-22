@@ -590,6 +590,51 @@ footer {
   letter-spacing: 4px;
 }
 
+/* Container for two images side-by-side below heading */
+.project-images {
+  display: flex;
+  gap: 10px;
+  margin: 12px 0 16px 0;
+}
+
+.project-images img {
+  width: 50%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.project-links {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.proj-link {
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.proj-link.github {
+  background-color: #24292e;
+  color: #ffffff;
+}
+
+.proj-link.playstore {
+  background-color: #01875f;
+  color: #ffffff;
+}
+
+.proj-link:hover {
+  opacity: 0.85;
+  transform: translateY(-2px);
+}
+
 @media (max-width: 768px) {
   .nav-toggle { display: flex; }
 
